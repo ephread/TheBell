@@ -1,0 +1,50 @@
+{
+  "pins" : [
+    {
+      "identity" : "defaults",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/Defaults",
+      "state" : {
+        "revision" : "119f654d44f7b90f00dc11f7dd1c94a36f12576b",
+        "version" : "6.2.1"
+      }
+    },
+    {
+      "identity" : "grdb.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/groue/GRDB.swift/",
+      "state" : {
+        "revision" : "2ac5c773537622b1520fdde3efc1a216119359ff",
+        "version" : "5.24.1"
+      }
+    },
+    {
+      "identity" : "puppy",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sushichop/Puppy",
+      "state" : {
+        "revision" : "b5af02a72a5a1f92a68e6eceee19cac804067ad9",
+        "version" : "0.7.0"
+      }
+    },
+    {
+      "identity" : "resolver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hmlongco/Resolver",
+      "state" : {
+        "revision" : "97de0b0320036607564af4a60025b48f8d041221",
+        "version" : "1.5.0"
+      }
+    },
+    {
+      "identity" : "swift-log",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-log/",
+      "state" : {
+        "revision" : "32e8d724467f8fe623624570367e3d50c5638e46",
+        "version" : "1.5.2"
+      }
+    }
+  ],
+  "version" : 2
+}

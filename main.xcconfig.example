@@ -1,0 +1,10 @@
+//
+// Copyright © 2023 Frédéric Maquin <fred@ephread.com>
+// Licensed under the terms of the Apache License 2.0
+//
+
+DEVELOPMENT_TEAM = //3SC5U49EA8
+
+// 'DISAMBIGUATOR' is inserted in the bundle ID ensures that
+// Xcode's automatic provisioning can create a profile out of the box.
+DISAMBIGUATOR = ${DEVELOPMENT_TEAM}

@@ -1,0 +1,21 @@
+#
+# Copyright © 2023 Frédéric Maquin <fred@ephread.com>
+# Licensed under the terms of the Apache License 2.0
+#
+
+output_dir: Sources/Helpers/Generated/
+
+strings:
+    inputs:
+        - Sources/Supporting Files/Strings/en.lproj/Localizable.strings
+    outputs:
+        templateName: structured-swift5
+        output: Strings+Generated.swift
+
+xcassets:
+    inputs:
+        - Sources/Supporting Files/Assets/Images.xcassets
+        - Sources/Supporting Files/Assets/Colors.xcassets
+    outputs:
+        templateName: swift5
+        output: Assets+Generated.swift
