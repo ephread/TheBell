@@ -61,12 +61,12 @@ class WelcomeViewModel: ObservableObject,
             try await self.healthkitManager.loadPreferredEnergyUnit()
 
             withAnimation {
-                mainViewModel.isWelcomeMessageDisplayed = false
+                mainViewModel.onboardingDidComplete()
             }
         } catch let error as HealthKitError {
             errorViewModel.push(error: error) { [weak self] in
                 withAnimation {
-                    self?.mainViewModel.isWelcomeMessageDisplayed = false
+                    self?.mainViewModel.onboardingDidComplete()
                 }
             }
         } catch {
