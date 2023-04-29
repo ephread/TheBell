@@ -153,7 +153,7 @@
 "preference.audio.footer" = "Play sounds when starting a new round, reaching the last stretch, starting a break or completing the workout. Sounds do not play in silent mode.\n\nIt is not recommended to enable both sounds and haptics at the same time.";
 
 "preference.haptic.title" = "Haptic Feedback";
-"preference.haptic.footer" = "Give haptic feedback when starting a new round, reaching the last stretch, starting a break or completing the workout.\n\nHaptic feedback may interfere with heartrate monitoring during workouts.";
+"preference.haptic.footer" = "Give haptic feedback when starting a new round, reaching the last stretch, starting a break or completing the workout.\n\nHaptic feedback may interfere with heartrate monitoring during workouts. On some versions of WatchOS, the haptic engine may play a sound; it's recommended to disable Audio Feedback when enabling Haptic feedback.";
 
 // MARK: - Acknowledgement
 "acknowledgement.grdb.name" = "GRDB (v5.24.1)";

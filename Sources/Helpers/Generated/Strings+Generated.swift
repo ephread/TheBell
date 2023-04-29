@@ -408,8 +408,8 @@ internal enum L10n {
     internal enum Haptic {
       /// Give haptic feedback when starting a new round, reaching the last stretch, starting a break or completing the workout.
       /// 
-      /// Haptic feedback may interfere with heartrate monitoring during workouts.
-      internal static let footer = L10n.tr("Localizable", "preference.haptic.footer", fallback: "Give haptic feedback when starting a new round, reaching the last stretch, starting a break or completing the workout.\n\nHaptic feedback may interfere with heartrate monitoring during workouts.")
+      /// Haptic feedback may interfere with heartrate monitoring during workouts. On some versions of WatchOS, the haptic engine may play a sound; it's recommended to disable Audio Feedback when enabling Haptic feedback.
+      internal static let footer = L10n.tr("Localizable", "preference.haptic.footer", fallback: "Give haptic feedback when starting a new round, reaching the last stretch, starting a break or completing the workout.\n\nHaptic feedback may interfere with heartrate monitoring during workouts. On some versions of WatchOS, the haptic engine may play a sound; it's recommended to disable Audio Feedback when enabling Haptic feedback.")
       /// Haptic Feedback
       internal static let title = L10n.tr("Localizable", "preference.haptic.title", fallback: "Haptic Feedback")
     }
