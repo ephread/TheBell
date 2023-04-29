@@ -72,6 +72,8 @@ struct WorkoutView: View {
     }
 }
 
+#if DEBUG
+
 // MARK: Previews
 struct WorkoutView_Previews: PreviewProvider {
     static var previews: some View {
@@ -79,3 +81,5 @@ struct WorkoutView_Previews: PreviewProvider {
             .previewDevice("Apple Watch SE (44mm) (2nd generation)")
     }
 }
+
+#endif

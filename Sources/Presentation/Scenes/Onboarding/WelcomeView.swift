@@ -49,6 +49,8 @@ struct WelcomeView: View {
     }
 }
 
+#if DEBUG
+
 // MARK: - Previews
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
@@ -63,3 +65,5 @@ struct ContentView_Previews: PreviewProvider {
         }
     }
 }
+
+#endif

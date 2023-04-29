@@ -15,6 +15,8 @@ struct HeartRateView: View {
     }
 }
 
+#if DEBUG
+
 // MARK: - Previews
 struct HeartRateView_Previews: PreviewProvider {
     static var previews: some View {
@@ -28,3 +30,5 @@ struct HeartRateView_Previews: PreviewProvider {
             .frame(width: 20, height: 20, alignment: .center)
     }
 }
+
+#endif

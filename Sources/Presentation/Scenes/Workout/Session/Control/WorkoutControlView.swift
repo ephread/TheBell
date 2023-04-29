@@ -69,9 +69,13 @@ struct WorkoutControlView: View {
     }
 }
 
+#if DEBUG
+
 // MARK: - Previews
 struct WorkoutControlView_Previews: PreviewProvider {
     static var previews: some View {
         WorkoutControlView()
     }
 }
+
+#endif

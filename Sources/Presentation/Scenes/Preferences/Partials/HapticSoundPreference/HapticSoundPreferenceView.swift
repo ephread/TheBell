@@ -57,6 +57,8 @@ struct HapticSoundPreferenceView: View {
     }
 }
 
+#if DEBUG
+
 struct HapticSoundPreferenceView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -74,3 +76,5 @@ struct HapticSoundPreferenceView_Previews: PreviewProvider {
         }
     }
 }
+
+#endif
