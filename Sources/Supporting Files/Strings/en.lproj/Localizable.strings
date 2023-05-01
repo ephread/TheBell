@@ -35,6 +35,7 @@
 "error.message.couldNotEndDataCollection" = "Could not end monitoring workout data.";
 "error.message.couldNotEndWorkout" = "Could not end workout.";
 "error.message.couldNotRestoreWorkout" = "Could not restore workout.";
+"error.message.noRestorableWorkouts" = "There are no restorable workouts.";
 "error.message.workoutAlreadyRunning" = "A workout is already running, could not start a new workout.";
 "error.message.authorizationDenied" = "Authorization denied.\n\nYou must allow The Bell to write workouts from the system-wide settings.\n\n(Settings > Health > Apps)";
 

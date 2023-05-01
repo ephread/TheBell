@@ -301,6 +301,8 @@ internal enum L10n {
       }
       /// HealthKit is not available on this device.
       internal static let healthKitNotAvailable = L10n.tr("Localizable", "error.message.healthKitNotAvailable", fallback: "HealthKit is not available on this device.")
+      /// There are no restorable workouts.
+      internal static let noRestorableWorkouts = L10n.tr("Localizable", "error.message.noRestorableWorkouts", fallback: "There are no restorable workouts.")
       /// HealthKit is not ready.
       internal static let storeNotReady = L10n.tr("Localizable", "error.message.storeNotReady", fallback: "HealthKit is not ready.")
       /// The quantity unit is invalid.

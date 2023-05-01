@@ -55,7 +55,7 @@ actor EmptyHealthKitManager: HealthKitManagement {
     func pauseWorkout() async { }
     func endWorkout() async throws { }
     func discardPreviousWorkout() async { }
-    func recoverWorkout() async throws { }
+    func tryToRecoverWorkout() async throws { }
     func reset() async { }
     func setDelegate(_ delegate: any HealthKitManagerDelegate) async { }
 }
@@ -84,7 +84,7 @@ class WorkoutSessionManagerPreview: WorkoutSessionManagement {
     }
 
     func startWorkoutCountdown() async { }
-    func recoverWorkout() async { }
+    func tryToRecoverWorkout() async { }
     func resumeWorkout() async { }
     func pauseWorkout() async { }
     func endWorkout() async { }

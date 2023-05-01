@@ -67,7 +67,7 @@ actor FakeHealthKitManager: HealthKitManagement {
 
     }
 
-    func recoverWorkout() async throws {
+    func tryToRecoverWorkout() async throws {
 
     }
 

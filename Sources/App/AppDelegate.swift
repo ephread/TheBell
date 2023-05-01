@@ -21,6 +21,11 @@ class AppDelegate: NSObject,
     func applicationDidFinishLaunching() {
         logger.info( "Application did finish launching.")
         initializeAudioSession()
+
+        // Since 'handleActiveWorkoutRecovery()' is never called, we
+        // try to restore any pre-existing workout as soon as the app
+        // has loaded instead.
+        Task { await workoutSessionManager.tryToRecoverWorkout() }
     }
 
     func applicationDidBecomeActive() {
@@ -79,7 +84,6 @@ class AppDelegate: NSObject,
         // For some reason, this method is never ever called.
         // It might have to do with WKApplicationDelegateAdaptor.
         logger.info("Handling Workout Recovery…")
-        Task { await workoutSessionManager.recoverWorkout() }
     }
 
     // MARK: Private Methods
