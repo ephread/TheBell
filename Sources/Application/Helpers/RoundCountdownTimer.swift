@@ -8,6 +8,10 @@ import Foundation
 // MARK: - Protocols
 @MainActor
 /// Tracks the remaining time in a round.
+///
+/// The concrete implementation doesn't need to deal with a suspended process,
+/// because it's intended to be used when a workout is ongoing (i.e. the app
+/// remains in the foreground).
 protocol RoundCountdownTimeManagement {
     // MARK: Properties
     var remainingDuration: TimeInterval { get async }

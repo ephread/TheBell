@@ -7,20 +7,38 @@ import Foundation
 
 // MARK: - Main Protocol
 /// Tracks the total time elapsed in a workout.
+///
+/// The concrete implementation doesn't need to deal with a suspended process,
+/// because it's intended to be used when a workout is ongoing (i.e. the app
+/// remains in the foreground).
 @MainActor
 protocol ElapsedTimeTracking: AnyObject {
     // MARK: Properties
+    /// The number of seconds elapsed since the reference date
+    ///  (see ``startTracking(from:onTick:)``, minus the time spend paused.
     var elapsedTime: TimeInterval { get async }
 
     var isTracking: Bool { get async }
     var isPaused: Bool { get async }
 
     // MARK: Methods
+
+    /// Starts counting time elapsed since `date`.
+    ///
+    /// - Parameters:
+    ///   - date: The start date to use.
+    ///   - onTick: A closure to call about every second.
     func startTracking(
         from date: Date,
         onTick: @MainActor @Sendable @escaping (TimeInterval) async -> Void
     ) async
 
+    /// Starts counting time elapsed since now minus `elapsedTime`.
+    /// This method is used when restoring a workout.
+    ///
+    /// - Parameters:
+    ///   - elapsedTime: A negative offset in seconds.
+    ///   - onTick: A closure to call about every second.
     func startTracking(
         from elapsedTime: TimeInterval,
         onTick: @MainActor @Sendable @escaping (TimeInterval) async -> Void

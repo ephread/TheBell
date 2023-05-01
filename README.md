@@ -13,6 +13,14 @@ A round-based HIIT timer for Apple Watch.
 - [History and Future](#history-and-future)
 - [License](#license)
 
+## History
+
+I first developed The Bell during the 2020 lockdowns to further familiarise myself with watchOS. The first version used WatchKit; when Apple released the Apple Watch Series 7, it became clear that WatchKit was no longer the preferred toolkit as some new APIs were SwiftUI-only.
+
+In early 2023, I revisited the App by converting the UI layer to SwiftUI and moving to the async/await APIs. Since I never intended The Bell to be anything more than a functional proof of concept, I decided to open-source it.
+
+I reworked about 70% of the app. If I had to start it from scratch today, I would probably use an Elm/redux-inspired architecture instead of MVVM.
+
 ## Getting Started
 
 ### Requirements
@@ -35,11 +43,11 @@ A round-based HIIT timer for Apple Watch.
 [Mint]: https://github.com/yonaskolb/Mint
 [Audio Assets]: #why-do-audio-assets-sound-silly
 
-### Architecture & Rational
+## Architecture & Rational
 
-#### Overview
+### Overview
 
-The Bell uses a three-tier architecture with MVVM in the presentation layer. To keep things simple, layers are not entirely decoupled from each other (but could be with a minimal amount of work). For example:
+The Bell uses a three-tier architecture with MVVM in the presentation layer. To keep things simple, layers are not entirely decoupled from each other (but could become so with minimal work). For example:
 
 1. since the data model is simple and often not converted/manipulated by the application layer, the presentation layer can query repositories directly;
 2. `UserPreference` and `Workout` are plain structs that can be easily created/mocked and are thus not abstracted.
@@ -47,15 +55,9 @@ The Bell uses a three-tier architecture with MVVM in the presentation layer. To 
 
 However, a more complex app would benefit from having different types encapsulating the data in the different layers, even if they match 1:1 (in that case, type aliases could be used).
 
-```mermaid
-graph RL
-    Data <--> Application <--> Presentation
-    Data <--> Presentation
-```
+The Bell relies heavily on protocols and dependency injection to make view models, managers and helpers testable in isolation.
 
-The app relies heavily on protocols and dependency injection to make view models, managers and helpers testable in isolation.
-
-#### Tiers and naming conventions
+### Tiers and naming conventions
 
 - **Presentation Layer:** Contains all the UI-related code, including MVVM's Views and View Models.
     - _Standard suffixes:_ `-View` (suffixes `Button`, `Label` etc. are also possible), `-ViewModel`
@@ -69,15 +71,13 @@ The app relies heavily on protocols and dependency injection to make view models
 
 All tiers may also contain `-Helper` types.
 
+### Navigation
+
+The Bell has a very simple navigation pattern, therefore, `NavigationPath` and/or Coordinators are not involved.
+
 ### Why do audio assets sound silly?
 
-The App Store version uses audio assets that can't be freely distributed. Therefore, they have been replaced by public domain equivalents. Yes, they are silly.
-
-## History and Future
-
-I first developed The Bell during the 2020 lockdowns to become more familiar with watchOS. The first version used WatchKit. When Apple released the Apple Watch Series 7, it became clear that WatchKit was no longer the preferred toolkit as some of the new APIs were SwiftUI-only.
-
-In early 2023, I decided to revisit the App by converting the UI layer to SwiftUI and moving to the async/await APIs.
+The App Store version uses audio assets that can't be freely distributed. Therefore, they have been replaced by public domain equivalents. Yes, they sound silly.
 
 ## License
 
