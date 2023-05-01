@@ -3,6 +3,12 @@ Important changes to The Bell will be documented in this file.
 The Bell follows [Semantic Versioning](http://semver.org/).
 Versions before 1.1.0 are not publicly available.
 
+## [1.1.0-rc.3](https://github.com/ephread/TheBell/releases/tag/1.1.0-rc.3)
+Released on 2023-05-01.
+
+### Fixed
+- Restored workout recovery
+
 ## [1.1.0-rc.2](https://github.com/ephread/TheBell/releases/tag/1.1.0-rc.2)
 Released on 2023-04-29.
 
