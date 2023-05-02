@@ -16,7 +16,13 @@ final class MainRepositoryTestCase: XCTestCase {
     // MARK: Setup & Teardown
     override func setUp() async throws {
         try await super.setUp()
-        databaseQueue = try DatabaseInitializer().initializeInMemoryDatabaseQueue()
+
+        let intializer = DatabaseInitializer(
+            fileManager: FileManager.default,
+            logger: Logger(label: "")
+        )
+
+        databaseQueue = try intializer.initializeInMemoryDatabaseQueue()
         sut = MainRepository(databaseQueue: databaseQueue, logger: Logger(label: ""))
     }
 

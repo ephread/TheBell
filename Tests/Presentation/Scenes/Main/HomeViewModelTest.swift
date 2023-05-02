@@ -5,14 +5,16 @@
 
 import XCTest
 import Defaults
+import Logging
+
 @testable import The_Bell
 
 @MainActor
-final class MainViewModelTest: XCTestCase {
+final class HomeViewModelTest: XCTestCase {
     // MARK: Properties
     private var workoutManager: MockSpyWorkoutSessionManager!
     private var mainRepository: MockSpyMainRepository!
-    private var viewModel: HomeViewModel!
+    private var sut: HomeViewModel!
 
     // MARK: Setup and Teardown
     override func setUp() async throws {
@@ -20,9 +22,10 @@ final class MainViewModelTest: XCTestCase {
 
         workoutManager = MockSpyWorkoutSessionManager()
         mainRepository = MockSpyMainRepository()
-        viewModel = HomeViewModel(
+        sut = HomeViewModel(
             mainRepository: mainRepository,
-            workoutSessionManager: workoutManager
+            workoutSessionManager: workoutManager,
+            logger: Logger(label: "")
         )
 
         Defaults.removeAll()
@@ -30,58 +33,65 @@ final class MainViewModelTest: XCTestCase {
 
     // MARK: Tests
     func testThatWelcomeViewIsDisplayedWhenTheKeyIsFalse() async throws {
-        await viewModel.appear()
+        await sut.appear()
 
-        XCTAssertTrue(viewModel.isWelcomeMessageDisplayed)
+        XCTAssertTrue(sut.isWelcomeMessageDisplayed)
     }
 
     func testThatWelcomeViewIsNotDisplayedWhenTheKeyIsTrue() async throws {
         Defaults[.hasSeenWelcomeMessage] = true
-        await viewModel.appear()
+        await sut.appear()
 
-        XCTAssertFalse(viewModel.isWelcomeMessageDisplayed)
+        XCTAssertFalse(sut.isWelcomeMessageDisplayed)
+    }
+
+    func testThatWelcomeViewIsDismissedWhenCompleted() async throws {
+        await sut.appear()
+        sut.onboardingDidComplete()
+
+        XCTAssertFalse(sut.isWelcomeMessageDisplayed)
     }
 
     func testThatWorkoutIsDisplayedWhenTheStateIsNotNil() async throws {
         Defaults[.hasSeenWelcomeMessage] = true
-        await viewModel.appear()
+        await sut.appear()
 
-        XCTAssertFalse(viewModel.isWorkoutDisplayed)
+        XCTAssertFalse(sut.isWorkoutDisplayed)
 
         workoutManager.sendState(.idle)
 
-        await MainActor.run { XCTAssertTrue(viewModel.isWorkoutDisplayed) }
+        await MainActor.run { XCTAssertTrue(sut.isWorkoutDisplayed) }
 
         workoutManager.sendState(.paused)
 
-        await MainActor.run { XCTAssertTrue(viewModel.isWorkoutDisplayed) }
+        await MainActor.run { XCTAssertTrue(sut.isWorkoutDisplayed) }
 
         workoutManager.sendState(.running)
 
-        await MainActor.run { XCTAssertTrue(viewModel.isWorkoutDisplayed) }
+        await MainActor.run { XCTAssertTrue(sut.isWorkoutDisplayed) }
 
         workoutManager.sendState(.completed(nil))
 
-        await MainActor.run { XCTAssertTrue(viewModel.isWorkoutDisplayed) }
+        await MainActor.run { XCTAssertTrue(sut.isWorkoutDisplayed) }
 
         workoutManager.sendState(.error(nil))
 
-        await MainActor.run { XCTAssertTrue(viewModel.isWorkoutDisplayed) }
+        await MainActor.run { XCTAssertTrue(sut.isWorkoutDisplayed) }
 
         workoutManager.sendState(nil)
 
-        await MainActor.run { XCTAssertFalse(viewModel.isWorkoutDisplayed) }
+        await MainActor.run { XCTAssertFalse(sut.isWorkoutDisplayed) }
     }
 
     func testThatTheNumberOfRoundIsRetrieved() async throws {
-        await viewModel.appear()
+        await sut.appear()
 
         XCTAssertTrue(mainRepository.didCallGetMainWorkout)
     }
 
     func testThatWorkoutIsPrepared() async throws {
-        await viewModel.appear()
-        await viewModel.prepareWorkout()
+        await sut.appear()
+        await sut.prepareWorkout()
 
         XCTAssertTrue(workoutManager.didPrepare)
     }

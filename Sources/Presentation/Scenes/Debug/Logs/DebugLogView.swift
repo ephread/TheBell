@@ -11,13 +11,13 @@ import Resolver
 // MARK: - Previews
 struct DebugLogView: View {
     // MARK: Properties
-    @InjectedObject var sut: DebugLogViewModel
+    @InjectedObject var viewModel: DebugLogViewModel
 
     // MARK: Body
     var body: some View {
         List {
             Section("List") {
-                ForEach(sut.logs, id: \.self) { log in
+                ForEach(viewModel.logs, id: \.self) { log in
                     ShareLink(
                         item: log,
                         preview: SharePreview(log.name)
@@ -27,7 +27,7 @@ struct DebugLogView: View {
                 }
             }
         }
-        .task { await sut.appear() }
+        .task { await viewModel.appear() }
         .navigationTitle("Logs")
     }
 }

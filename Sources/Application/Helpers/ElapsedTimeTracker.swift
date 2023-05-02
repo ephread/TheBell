@@ -44,10 +44,30 @@ protocol ElapsedTimeTracking: AnyObject {
         onTick: @MainActor @Sendable @escaping (TimeInterval) async -> Void
     ) async
 
+    /// Pauses the tracker.
+    ///
+    /// If this instance is paused or isn't tracking,
+    /// this method does nothing.
+    ///
+    /// This method does not invoke the closure passed to ``startTracking(from:onTick:)``.
     func pauseTracking() async
+
+    /// Resumes the tracker.
+    ///
+    /// If this instance is not paused or isn't tracking,
+    /// this method does nothing.
+    ///
+    /// This method invokes the closure passed to ``startTracking(from:onTick:)``.
     func resumeTracking() async
+
+    /// Pauses the tracker.
+    ///
+    /// If this instance isn't tracking, this method does nothing.
+    ///
+    /// This method invokes the closure passed to ``startTracking(from:onTick:)``.
     func stopTracking() async
 
+    /// Resets the tracker.
     func reset() async
 }
 
@@ -86,13 +106,14 @@ class ElapsedTimeTracker: ElapsedTimeTracking {
     ) async {
         guard !isTracking else { return }
 
-        await initializeTimer()
         await reset()
 
         self.onTick = onTick
         self.isTracking = true
         self.startDate = date
 
+        await initializeTimer()
+        await notify()
         await timer?.start()
     }
 
@@ -102,13 +123,14 @@ class ElapsedTimeTracker: ElapsedTimeTracking {
     ) async {
         guard !isTracking else { return }
 
-        await initializeTimer()
         await reset()
 
         self.onTick = onTick
         self.isTracking = true
         self.startDate = Date.now.addingTimeInterval(-elapsedTime)
 
+        await initializeTimer()
+        await notify()
         await timer?.start()
     }
 

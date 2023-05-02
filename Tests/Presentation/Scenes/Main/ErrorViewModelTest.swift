@@ -11,13 +11,13 @@ import XCTest
 @MainActor
 final class ErrorViewModelTest: XCTestCase {
     // MARK: Properties
-    private var viewModel: ErrorViewModel!
+    private var sut: ErrorViewModel!
 
     // MARK: Setup and Teardown
     override func setUp() async throws {
         try await super.setUp()
 
-        viewModel = ErrorViewModel()
+        sut = ErrorViewModel()
     }
 
     // MARK: Tests
@@ -26,32 +26,32 @@ final class ErrorViewModelTest: XCTestCase {
         let error2 = StubDisplayableError(title: "Title 2", message: "Message 2")
         let error3 = StubDisplayableError(title: "Title 3", message: "Message 3")
 
-        XCTAssertNil(viewModel.currentError)
-        viewModel.push(error: error1)
+        XCTAssertNil(sut.currentError)
+        sut.push(error: error1)
 
-        XCTAssertEqual(viewModel.currentError as! StubDisplayableError, error1)
-        viewModel.push(error: error2)
+        XCTAssertEqual(sut.currentError as! StubDisplayableError, error1)
+        sut.push(error: error2)
 
-        XCTAssertEqual(viewModel.currentError as! StubDisplayableError, error1)
+        XCTAssertEqual(sut.currentError as! StubDisplayableError, error1)
 
-        viewModel.dismiss()
+        sut.dismiss()
 
-        XCTAssertEqual(viewModel.currentError as! StubDisplayableError, error2)
-        viewModel.push(error: error3)
+        XCTAssertEqual(sut.currentError as! StubDisplayableError, error2)
+        sut.push(error: error3)
 
-        XCTAssertEqual(viewModel.currentError as! StubDisplayableError, error2)
+        XCTAssertEqual(sut.currentError as! StubDisplayableError, error2)
 
-        viewModel.dismiss()
+        sut.dismiss()
 
-        XCTAssertEqual(viewModel.currentError as! StubDisplayableError, error3)
+        XCTAssertEqual(sut.currentError as! StubDisplayableError, error3)
 
-        viewModel.dismiss()
+        sut.dismiss()
 
-        XCTAssertNil(viewModel.currentError)
+        XCTAssertNil(sut.currentError)
 
-        viewModel.dismiss()
+        sut.dismiss()
 
-        XCTAssertNil(viewModel.currentError)
+        XCTAssertNil(sut.currentError)
     }
 
     func testThatActionIsCalled() throws {
@@ -61,15 +61,15 @@ final class ErrorViewModelTest: XCTestCase {
         var didDismissError1 = false
         var didDismissError2 = false
 
-        XCTAssertNil(viewModel.currentError)
-        viewModel.push(error: error1) { @MainActor in didDismissError1 = true }
-        viewModel.push(error: error2) { @MainActor in didDismissError2 = true }
+        XCTAssertNil(sut.currentError)
+        sut.push(error: error1) { @MainActor in didDismissError1 = true }
+        sut.push(error: error2) { @MainActor in didDismissError2 = true }
 
-        viewModel.dismiss()
+        sut.dismiss()
 
         XCTAssertTrue(didDismissError1)
 
-        viewModel.dismiss()
+        sut.dismiss()
 
         XCTAssertTrue(didDismissError2)
     }

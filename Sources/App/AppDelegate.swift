@@ -19,7 +19,7 @@ class AppDelegate: NSObject,
 
     // MARK: WKApplicationDelegate Methods
     func applicationDidFinishLaunching() {
-        logger.info( "Application did finish launching.")
+        logger.info("Application did finish launching.")
         initializeAudioSession()
 
         // Since 'handleActiveWorkoutRecovery()' is never called, we

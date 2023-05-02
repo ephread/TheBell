@@ -60,14 +60,10 @@ class WelcomeViewModel: ObservableObject,
 
             try await self.healthkitManager.loadPreferredEnergyUnit()
 
-            withAnimation {
-                mainViewModel.onboardingDidComplete()
-            }
+            mainViewModel.onboardingDidComplete()
         } catch let error as HealthKitError {
             errorViewModel.push(error: error) { [weak self] in
-                withAnimation {
-                    self?.mainViewModel.onboardingDidComplete()
-                }
+                self?.mainViewModel.onboardingDidComplete()
             }
         } catch {
             // Nothing else to do, because `requestAccessToHealthStore` and

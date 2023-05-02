@@ -37,7 +37,7 @@ final class MockSpyWorkoutSessionManager: WorkoutSessionManagement {
     func endWorkout() async { didEnd = true }
     func clearWorkout() async { didClearWorkout = true }
 
-    func recoverWorkout() async { }
+    func tryToRecoverWorkout() async { }
 
     // MARK: Mock Methods
     func sendTotalElapsedTime(_ value: TimeInterval?) {

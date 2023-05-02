@@ -61,6 +61,69 @@ final class WorkoutControlViewModelTest: XCTestCase {
         XCTAssertFalse(sut.isWorkoutPaused)
     }
 
+    func testThatWorkoutIsStarted() async {
+        await sut.appear()
+
+        XCTAssertFalse(sut.isWorkoutStarted)
+
+        workoutSessionManager.sendState(.idle)
+        await Task.yield()
+        XCTAssertTrue(sut.isWorkoutStarted)
+
+        workoutSessionManager.sendState(.running)
+        await Task.yield()
+        XCTAssertTrue(sut.isWorkoutStarted)
+
+        workoutSessionManager.sendState(.paused)
+        await Task.yield()
+        XCTAssertTrue(sut.isWorkoutStarted)
+
+        workoutSessionManager.sendState(.error(nil))
+        await Task.yield()
+        XCTAssertTrue(sut.isWorkoutStarted)
+
+        workoutSessionManager.sendState(.completed(.preview))
+        await Task.yield()
+        XCTAssertTrue(sut.isWorkoutStarted)
+    }
+
+    func testThatPausingPausesTheWorkout() async {
+        await sut.appear()
+        workoutSessionManager.sendState(.running)
+
+        await sut.pauseResumeWorkout()
+        XCTAssertTrue(workoutSessionManager.didPause)
+        XCTAssertFalse(workoutSessionManager.didResume)
+    }
+
+    func testThatResumingResumesTheWorkout() async {
+        await sut.appear()
+        workoutSessionManager.sendState(.paused)
+
+        await Task.yield()
+        await sut.pauseResumeWorkout()
+        XCTAssertTrue(workoutSessionManager.didResume)
+        XCTAssertFalse(workoutSessionManager.didPause)
+    }
+
+    func testThatEndingEndsTheWorkout() async {
+        await sut.appear()
+        workoutSessionManager.sendState(.running)
+
+        await Task.yield()
+        await sut.endWorkout()
+        XCTAssertTrue(workoutSessionManager.didEnd)
+    }
+
+    func testThatEndingWhenNoWorkoutIsStartedDoesNothing() async {
+        await sut.appear()
+        await sut.endWorkout()
+        XCTAssertFalse(workoutSessionManager.didEnd)
+    }
+
+    // MARK: Controversial Tests (timing)
+    // These tests might exhibit timing issues, but if they do, this is concerning
+    // so I think they have values.
     func testThatElapsedTimeVisibilityChangesWhenPaused() async {
         let expectation = expectation(
             description: "isElapsedTimeVisible was toggled at least twice"
@@ -155,65 +218,5 @@ final class WorkoutControlViewModelTest: XCTestCase {
         }
 
         await fulfillment(of: [expectation], timeout: 3)
-    }
-
-    func testThatWorkoutIsStarted() async {
-        await sut.appear()
-
-        XCTAssertFalse(sut.isWorkoutStarted)
-
-        workoutSessionManager.sendState(.idle)
-        await Task.yield()
-        XCTAssertTrue(sut.isWorkoutStarted)
-
-        workoutSessionManager.sendState(.running)
-        await Task.yield()
-        XCTAssertTrue(sut.isWorkoutStarted)
-
-        workoutSessionManager.sendState(.paused)
-        await Task.yield()
-        XCTAssertTrue(sut.isWorkoutStarted)
-
-        workoutSessionManager.sendState(.error(nil))
-        await Task.yield()
-        XCTAssertTrue(sut.isWorkoutStarted)
-
-        workoutSessionManager.sendState(.completed(.preview))
-        await Task.yield()
-        XCTAssertTrue(sut.isWorkoutStarted)
-    }
-
-    func testThatPausingPausesTheWorkout() async {
-        await sut.appear()
-        workoutSessionManager.sendState(.running)
-
-        await sut.pauseResumeWorkout()
-        XCTAssertTrue(workoutSessionManager.didPause)
-        XCTAssertFalse(workoutSessionManager.didResume)
-    }
-
-    func testThatResumingResumesTheWorkout() async {
-        await sut.appear()
-        workoutSessionManager.sendState(.paused)
-
-        await Task.yield()
-        await sut.pauseResumeWorkout()
-        XCTAssertTrue(workoutSessionManager.didResume)
-        XCTAssertFalse(workoutSessionManager.didPause)
-    }
-
-    func testThatEndingEndsTheWorkout() async {
-        await sut.appear()
-        workoutSessionManager.sendState(.running)
-
-        await Task.yield()
-        await sut.endWorkout()
-        XCTAssertTrue(workoutSessionManager.didEnd)
-    }
-
-    func testThatEndingWhenNoWorkoutIsStartedDoesNothing() async {
-        await sut.appear()
-        await sut.endWorkout()
-        XCTAssertFalse(workoutSessionManager.didEnd)
     }
 }

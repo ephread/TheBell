@@ -79,11 +79,11 @@ class WorkoutSessionManager: NSObject,
     private var preferences: UserPreference!
 
     private var isWorkoutInBetweenRounds = false {
-        didSet { saveCurrentRound(currentRound, isInBetweenRounds: isWorkoutInBetweenRounds) }
+        didSet { saveIsWorkoutInBetweenRounds(isWorkoutInBetweenRounds) }
     }
 
     private var currentRound: Int = 0 {
-        didSet { saveCurrentRound(currentRound, isInBetweenRounds: isWorkoutInBetweenRounds) }
+        didSet { saveCurrentRound(currentRound) }
     }
 
     private var remainingDurationInCurrentRound: TimeInterval? {
@@ -136,6 +136,9 @@ class WorkoutSessionManager: NSObject,
             await healthKitManager.discardPreviousWorkout()
 
             try await healthKitManager.startWorkout()
+
+            saveIsWorkoutInBetweenRounds(isWorkoutInBetweenRounds)
+            saveCurrentRound(currentRound)
 
             let now = Date.now
             startDate = now
@@ -216,6 +219,9 @@ class WorkoutSessionManager: NSObject,
     }
 
     func tryToRecoverWorkout() async {
+        // No workouts can be recovered if the user hasn't started one yet.
+        guard Defaults[.hasSeenWelcomeMessage] else { return }
+
         logger.info("Looking for recoverable workouts…")
 
         await updateModels()
@@ -366,8 +372,11 @@ class WorkoutSessionManager: NSObject,
         updateState(to: nil)
     }
 
-    private func saveCurrentRound(_ round: Int, isInBetweenRounds: Bool) {
+    private func saveCurrentRound(_ round: Int) {
         Defaults[.currentRound] = round
+    }
+
+    private func saveIsWorkoutInBetweenRounds(_ isInBetweenRounds: Bool) {
         Defaults[.isWorkoutInBetweenRounds] = isInBetweenRounds
     }
 

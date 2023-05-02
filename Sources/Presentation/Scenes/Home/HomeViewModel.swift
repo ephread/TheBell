@@ -131,8 +131,9 @@ class HomeViewModel: HomeViewModeling {
         isNavigationBarHidden = false
         navigationTitle = L10n.General.theBell
 
-        isWelcomeMessageDisplayed = false
-
+        withAnimation {
+            isWelcomeMessageDisplayed = false
+        }
     }
 
     private func handleState(_ state: WorkoutState?) {
