@@ -155,7 +155,6 @@ final class ElapsedTimeTrackerTest: XCTestCase {
                         stopExpectation.fulfill()
                     }
 
-                    
                     // 6 because The time tracker notifies the current time
                     // as soon as it starts, resumes and stops (1 + 2 + 1 + 1 + 1 ticks).
                     if self.elapsedTimes.count == 6 {
