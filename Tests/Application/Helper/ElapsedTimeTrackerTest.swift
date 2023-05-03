@@ -27,16 +27,18 @@ final class ElapsedTimeTrackerTest: XCTestCase {
     }
 
     func testDefaultInit() async throws {
-        let tickExpectation = expectation(description: "The tracker ticked four times")
-        let negativeExpectation = expectation(description: "The tracker didn't tick four times")
+        let tickExpectation = expectation(description: "The tracker ticked five times")
+        let negativeExpectation = expectation(description: "The tracker didn't tick five times")
         negativeExpectation.isInverted = true
 
         Task.delayed(seconds: 3.2) { @MainActor in
             await self.elapsedTimeTracker.stopTracking()
 
-            // 4 because The time tracker notifies the current time
-            // as soon as it starts (1 + 3 ticks).
-            if self.elapsedTimes.count == 4 {
+            print(self.elapsedTimes)
+
+            // 5 because The time tracker notifies the current time
+            // when it starts and stops. (1 + 3 + 1 ticks).
+            if self.elapsedTimes.count == 5 {
                 tickExpectation.fulfill()
             } else {
                 negativeExpectation.fulfill()
@@ -52,17 +54,17 @@ final class ElapsedTimeTrackerTest: XCTestCase {
     }
 
     func testPastDateInit() async throws {
-        let tickExpectation = expectation(description: "The tracker ticked four times")
+        let tickExpectation = expectation(description: "The tracker ticked five times")
         let valueExpectation = expectation(description: "The time values are above 4,000")
-        let negativeExpectation = expectation(description: "The tracker didn't tick four times")
+        let negativeExpectation = expectation(description: "The tracker didn't tick five times")
         negativeExpectation.isInverted = true
 
         Task.delayed(seconds: 3.2) { @MainActor in
             await self.elapsedTimeTracker.stopTracking()
 
-            // 4 because The time tracker notifies the current time
-            // as soon as it starts (1 + 3 ticks).
-            if self.elapsedTimes.count == 4 {
+            // 5 because The time tracker notifies the current time
+            // when it starts and stops. (1 + 3 + 1 ticks).
+            if self.elapsedTimes.count == 5 {
                 tickExpectation.fulfill()
             } else {
                 negativeExpectation.fulfill()
@@ -85,17 +87,17 @@ final class ElapsedTimeTrackerTest: XCTestCase {
     }
 
     func testTimeIntervalInit() async throws {
-        let tickExpectation = expectation(description: "The tracker ticked four times")
+        let tickExpectation = expectation(description: "The tracker ticked five times")
         let valueExpectation = expectation(description: "The time values are above 300")
-        let negativeExpectation = expectation(description: "The tracker didn't tick four times")
+        let negativeExpectation = expectation(description: "The tracker didn't tick five times")
         negativeExpectation.isInverted = true
 
         Task.delayed(seconds: 3.2) { @MainActor in
             await self.elapsedTimeTracker.stopTracking()
 
-            // 4 because The time tracker notifies the current time
-            // as soon as it starts (1 + 3 ticks).
-            if self.elapsedTimes.count == 4 {
+            // 5 because The time tracker notifies the current time
+            // when it starts and stops. (1 + 3 + 1 ticks).
+            if self.elapsedTimes.count == 5 {
                 tickExpectation.fulfill()
             } else {
                 negativeExpectation.fulfill()
@@ -116,14 +118,14 @@ final class ElapsedTimeTrackerTest: XCTestCase {
     }
 
     func testThatTrackerPausesAndThatMultipleCallsAreIgnored() async throws {
-        let tickExpectation = expectation(description: "The tracker ticked five times")
+        let tickExpectation = expectation(description: "The tracker ticked six times")
         let valueExpectation = expectation(description: "The last time values is between 3s and 4s")
 
         let pauseExpectation = expectation(description: "'isPause' is true")
         let resumeExpectation = expectation(description: "'isTracking' is true")
         let stopExpectation = expectation(description: "'isPause' and 'isTracking' are false")
 
-        let negativeExpectation = expectation(description: "The tracker didn't tick five times.")
+        let negativeExpectation = expectation(description: "The tracker didn't tick six times.")
         negativeExpectation.isInverted = true
 
         Task.delayed(seconds: 2.1) { @MainActor in
@@ -153,9 +155,9 @@ final class ElapsedTimeTrackerTest: XCTestCase {
                         stopExpectation.fulfill()
                     }
 
-                    // 4 because The time tracker notifies the current time
-                    // as soon as it starts/resumes (1 + 1 + 3 ticks).
-                    if self.elapsedTimes.count == 5 {
+                    // 6 because The time tracker notifies the current time
+                    // as soon as it starts, resumes and stops (1 + 2 + 1 + 1 + 1 ticks).
+                    if self.elapsedTimes.count == 6 {
                         tickExpectation.fulfill()
                     } else {
                         negativeExpectation.fulfill()

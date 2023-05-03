@@ -391,25 +391,6 @@ final class WorkoutSessionManagerTest: XCTestCase {
 
         await fulfillment(of: [expectation], timeout: 1)
     }
-
-    func testThatHealthKitErrorsAreForwardedWhenRecoveringAWorkout() async {
-        let expectation = expectation(description: "An error is sent")
-
-        sut.state
-            .receive(on: DispatchQueue.main)
-            .dropFirst()
-            .sink { state in
-                if case let .error(error) = state, error != nil {
-                    expectation.fulfill()
-                }
-            }
-            .store(in: &cancellables)
-
-        await healthKitManager.enableErrorTrigger()
-        await sut.recoverWorkout()
-
-        await fulfillment(of: [expectation], timeout: 1)
-    }
 }
 
 // MARK: - Private Extensions

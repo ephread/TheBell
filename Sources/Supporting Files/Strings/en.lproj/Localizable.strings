@@ -35,6 +35,7 @@
 "error.message.couldNotEndDataCollection" = "Could not end monitoring workout data.";
 "error.message.couldNotEndWorkout" = "Could not end workout.";
 "error.message.couldNotRestoreWorkout" = "Could not restore workout.";
+"error.message.noRestorableWorkouts" = "There are no restorable workouts.";
 "error.message.workoutAlreadyRunning" = "A workout is already running, could not start a new workout.";
 "error.message.authorizationDenied" = "Authorization denied.\n\nYou must allow The Bell to write workouts from the system-wide settings.\n\n(Settings > Health > Apps)";
 
@@ -153,7 +154,7 @@
 "preference.audio.footer" = "Play sounds when starting a new round, reaching the last stretch, starting a break or completing the workout. Sounds do not play in silent mode.\n\nIt is not recommended to enable both sounds and haptics at the same time.";
 
 "preference.haptic.title" = "Haptic Feedback";
-"preference.haptic.footer" = "Give haptic feedback when starting a new round, reaching the last stretch, starting a break or completing the workout.\n\nHaptic feedback may interfere with heartrate monitoring during workouts.";
+"preference.haptic.footer" = "Give haptic feedback when starting a new round, reaching the last stretch, starting a break or completing the workout.\n\nHaptic feedback may interfere with heartrate monitoring during workouts. On some versions of WatchOS, the haptic engine may play a sound; it's recommended to disable Audio Feedback when enabling Haptic feedback.";
 
 // MARK: - Acknowledgement
 "acknowledgement.grdb.name" = "GRDB (v5.24.1)";

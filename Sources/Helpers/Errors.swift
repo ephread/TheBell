@@ -56,6 +56,7 @@ enum WorkoutError: DisplayableError {
     case couldNotEndWorkout(Error?)
 
     case couldNotRestoreWorkout(Error?)
+    case noRestorableWorkouts
 
     case workoutAlreadyRunning
     case authorizationDenied
@@ -72,6 +73,7 @@ enum WorkoutError: DisplayableError {
         case .couldNotEndDataCollection: return L10n.Error.Message.couldNotEndDataCollection
         case .couldNotEndWorkout: return L10n.Error.Message.couldNotEndWorkout
         case .couldNotRestoreWorkout: return L10n.Error.Message.couldNotRestoreWorkout
+        case .noRestorableWorkouts: return L10n.Error.Message.couldNotRestoreWorkout
         case .workoutAlreadyRunning: return L10n.Error.Message.workoutAlreadyRunning
         case .authorizationDenied: return L10n.Error.Message.authorizationDenied
         }

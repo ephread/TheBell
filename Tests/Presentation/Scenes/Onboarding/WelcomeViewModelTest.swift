@@ -13,10 +13,10 @@ import Defaults
 final class WelcomeViewModelTest: XCTestCase {
     // MARK: Properties
     private var healthkitManager: MockSpyHealthKitManager!
-    private var mainViewModel: MockMainViewModel!
+    private var mainViewModel: MockSpyHomeViewModel!
     private var errorViewModel: ErrorViewModel!
 
-    private var viewModel: WelcomeViewModel!
+    private var sut: WelcomeViewModel!
 
     private var isRequestingAccess = false
 
@@ -27,9 +27,9 @@ final class WelcomeViewModelTest: XCTestCase {
         try await super.setUp()
 
         healthkitManager = MockSpyHealthKitManager()
-        mainViewModel = MockMainViewModel()
+        mainViewModel = MockSpyHomeViewModel()
         errorViewModel = ErrorViewModel()
-        viewModel = WelcomeViewModel(
+        sut = WelcomeViewModel(
             mainViewModel: mainViewModel,
             errorViewModel: errorViewModel,
             healthkitManager: healthkitManager
@@ -41,25 +41,25 @@ final class WelcomeViewModelTest: XCTestCase {
 
     // MARK: Tests
     func testThatRequestingPermissionsSetsKeyToTrue() async {
-        await viewModel.requestAccessToHealthStore()
+        await sut.requestAccessToHealthStore()
         XCTAssertTrue(Defaults[.hasSeenWelcomeMessage])
     }
 
     func testThatRequestingPermissionsDoesNotTriggerAnError() async {
-        await viewModel.requestAccessToHealthStore()
+        await sut.requestAccessToHealthStore()
         XCTAssertNil(errorViewModel.currentError)
     }
 
     func testThatHealthKitErrorsAreDisplayed() async {
         await healthkitManager.enableErrorTrigger()
-        await viewModel.requestAccessToHealthStore()
+        await sut.requestAccessToHealthStore()
         XCTAssertNotNil(errorViewModel.currentError)
     }
 
-    func testThatWelcomeViewIsHiddenOncePermissionsAreRequested() async {
+    func testThatWelcomeViewIsDismissedOncePermissionsAreGrantedOrRefused() async {
         mainViewModel.setIsWelcomeMessageDisplayed(true)
-        await viewModel.requestAccessToHealthStore()
-        await MainActor.run { XCTAssertFalse(mainViewModel.isWelcomeMessageDisplayed) }
+        await sut.requestAccessToHealthStore()
+        XCTAssertTrue(mainViewModel.didCallOnboardingDidComplete)
     }
 
     func testThatUserInteractionIsDisabledWhenRequestingPermissionsWithoutError() async {
@@ -79,7 +79,7 @@ final class WelcomeViewModelTest: XCTestCase {
             description: "User Interaction is disabled when requesting permissions."
         )
 
-        viewModel.$isRequestingAccessToTheHealthStore
+        sut.$isRequestingAccessToTheHealthStore
             .receive(on: DispatchQueue.main)
             .dropFirst()
             .sink { [weak self] value in
@@ -91,9 +91,9 @@ final class WelcomeViewModelTest: XCTestCase {
             .store(in: &cancellables)
 
         isRequestingAccess = true
-        await self.viewModel.requestAccessToHealthStore()
+        await self.sut.requestAccessToHealthStore()
 
         await fulfillment(of: [expectation], timeout: 2)
-        await MainActor.run { XCTAssertFalse(viewModel.isRequestingAccessToTheHealthStore) }
+        await MainActor.run { XCTAssertFalse(sut.isRequestingAccessToTheHealthStore) }
     }
 }

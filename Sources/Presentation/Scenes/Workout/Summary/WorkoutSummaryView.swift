@@ -161,6 +161,8 @@ struct WorkoutSummaryView: View {
     }
 }
 
+#if DEBUG
+
 // MARK: - Previews
 struct WorkoutSummaryView_Previews: PreviewProvider {
     static var previews: some View {
@@ -182,3 +184,5 @@ struct WorkoutSummaryView_Previews: PreviewProvider {
         }
     }
 }
+
+#endif

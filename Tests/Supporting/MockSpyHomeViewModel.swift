@@ -6,7 +6,7 @@
 import SwiftUI
 @testable import The_Bell
 
-final class MockMainViewModel: HomeViewModeling {
+final class MockSpyHomeViewModel: HomeViewModeling {
 
     // MARK: Properties
     var buttonTitle: String = ""
@@ -18,6 +18,8 @@ final class MockMainViewModel: HomeViewModeling {
     var isNavigationBarHidden = false
     var navigationBarDisplayMode: NavigationBarItem.TitleDisplayMode = .automatic
 
+    var didCallOnboardingDidComplete = false
+
     // MARK: Methods
     func prepareWorkout() async { }
 
@@ -27,5 +29,9 @@ final class MockMainViewModel: HomeViewModeling {
 
     func setIsWorkoutDisplayed(_ value: Bool) {
         isWorkoutDisplayed = value
+    }
+
+    func onboardingDidComplete() {
+        didCallOnboardingDidComplete = true
     }
 }

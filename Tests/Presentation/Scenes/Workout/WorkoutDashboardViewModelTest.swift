@@ -114,6 +114,35 @@ final class WorkoutDashboardViewModelTest: XCTestCase {
         XCTAssertFalse(sut.isWorkoutPaused)
     }
 
+    func testThatWorkoutIsStarted() async {
+        await sut.appear()
+
+        XCTAssertFalse(sut.isWorkoutStarted)
+
+        workoutSessionManager.sendState(.idle)
+        await Task.yield()
+        XCTAssertTrue(sut.isWorkoutStarted)
+
+        workoutSessionManager.sendState(.running)
+        await Task.yield()
+        XCTAssertTrue(sut.isWorkoutStarted)
+
+        workoutSessionManager.sendState(.paused)
+        await Task.yield()
+        XCTAssertTrue(sut.isWorkoutStarted)
+
+        workoutSessionManager.sendState(.error(nil))
+        await Task.yield()
+        XCTAssertTrue(sut.isWorkoutStarted)
+
+        workoutSessionManager.sendState(.completed(.preview))
+        await Task.yield()
+        XCTAssertTrue(sut.isWorkoutStarted)
+    }
+
+    // MARK: Controversial Tests (timing)
+    // These tests might exhibit timing issues, but if they do, this is concerning
+    // so I think they have values.
     func testThatElapsedTimeVisibilityChangesWhenPaused() async {
         let expectation = expectation(
             description: "isElapsedTimeVisible was toggled at least twice"
@@ -210,31 +239,5 @@ final class WorkoutDashboardViewModelTest: XCTestCase {
         }
 
         await fulfillment(of: [expectation], timeout: 3)
-    }
-
-    func testThatWorkoutIsStarted() async {
-        await sut.appear()
-
-        XCTAssertFalse(sut.isWorkoutStarted)
-
-        workoutSessionManager.sendState(.idle)
-        await Task.yield()
-        XCTAssertTrue(sut.isWorkoutStarted)
-
-        workoutSessionManager.sendState(.running)
-        await Task.yield()
-        XCTAssertTrue(sut.isWorkoutStarted)
-
-        workoutSessionManager.sendState(.paused)
-        await Task.yield()
-        XCTAssertTrue(sut.isWorkoutStarted)
-
-        workoutSessionManager.sendState(.error(nil))
-        await Task.yield()
-        XCTAssertTrue(sut.isWorkoutStarted)
-
-        workoutSessionManager.sendState(.completed(.preview))
-        await Task.yield()
-        XCTAssertTrue(sut.isWorkoutStarted)
     }
 }

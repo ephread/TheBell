@@ -14,8 +14,6 @@ extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
         registerHelpers()
         registerManagers()
-
-        registerMainViewModels()
         registerViewModels()
         registerWorkoutViewModels()
     }
@@ -88,7 +86,7 @@ extension Resolver: ResolverRegistering {
         }.scope(.application)
     }
 
-    private static func registerMainViewModels() {
+    private static func registerViewModels() {
         register {
             ErrorViewModel()
         }
@@ -103,17 +101,6 @@ extension Resolver: ResolverRegistering {
         }
         .scope(.shared)
 
-        // Additional registration, so that `ObservedObjects`-conforming ViewModels can
-        // also be inject through their protocols when required.
-
-        register((any HomeViewModeling).self) { resolve(HomeViewModel.self) }
-            .scope(.shared)
-
-        register((any ErrorViewModeling).self) { resolve(ErrorViewModel.self) }
-            .scope(.application)
-    }
-
-    private static func registerViewModels() {
         register {
             WelcomeViewModel(
                 mainViewModel: resolve(),
@@ -150,6 +137,12 @@ extension Resolver: ResolverRegistering {
 
         // Additional registration, so that `ObservedObjects`-conforming ViewModels can
         // also be inject through their protocols when required.
+
+        register((any HomeViewModeling).self) { resolve(HomeViewModel.self) }
+            .scope(.shared)
+
+        register((any ErrorViewModeling).self) { resolve(ErrorViewModel.self) }
+            .scope(.application)
 
         register((any PreferencesViewModeling).self) { resolve(PreferencesViewModel.self) }
             .scope(.shared)

@@ -134,6 +134,8 @@ struct PreferencesView: View {
 #endif
 }
 
+#if DEBUG
+
 // MARK: - Previews
 struct PreferencesView_Previews: PreviewProvider {
     static var previews: some View {
@@ -152,3 +154,5 @@ struct PreferencesView_Previews: PreviewProvider {
         }
     }
 }
+
+#endif

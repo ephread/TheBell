@@ -31,6 +31,7 @@ final class RoundCountdownTimerTest: XCTestCase {
 
             // 4 because The time tracker notifies the current time
             // as soon as it starts (1 + 3 ticks).
+            print(self.counts)
             if self.counts == [30, 29, 28, 27] {
                 tickExpectation.fulfill()
             } else {
@@ -85,8 +86,8 @@ final class RoundCountdownTimerTest: XCTestCase {
                         stopExpectation.fulfill()
                     }
 
-                    // 4 because The time tracker notifies the current time
-                    // as soon as it starts/resumes (1 + 1 + 3 ticks).
+                    // 5 because The time tracker notifies the current time
+                    // as soon as it starts, resumes and stops (1 + 2 + 1 + 1 ticks).
                     if self.counts == [30, 29, 28, 28, 27] {
                         tickExpectation.fulfill()
                     } else {

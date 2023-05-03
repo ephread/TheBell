@@ -77,6 +77,8 @@ struct IntegerPickerPreview: View {
     }
 }
 
+#if DEBUG
+
 struct IntegerPickerView_Previews: PreviewProvider {
     @State static var selectedValue: Int = 90
     static let range = 60...200
@@ -93,3 +95,5 @@ struct IntegerPickerView_Previews: PreviewProvider {
         }
     }
 }
+
+#endif

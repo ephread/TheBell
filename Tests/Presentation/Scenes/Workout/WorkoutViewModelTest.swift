@@ -13,7 +13,7 @@ import Defaults
 final class WorkoutViewModelTest: XCTestCase {
     // MARK: Properties
     private var workoutSessionManager: MockSpyWorkoutSessionManager!
-    private var mainViewModel: MockMainViewModel!
+    private var mainViewModel: MockSpyHomeViewModel!
     private var errorViewModel: ErrorViewModel!
     private var sut: WorkoutViewModel!
 
@@ -21,7 +21,7 @@ final class WorkoutViewModelTest: XCTestCase {
     override func setUp() async throws {
         try await super.setUp()
         workoutSessionManager = MockSpyWorkoutSessionManager()
-        mainViewModel = MockMainViewModel()
+        mainViewModel = MockSpyHomeViewModel()
         errorViewModel = ErrorViewModel()
         sut = WorkoutViewModel(
             mainViewModel: mainViewModel,

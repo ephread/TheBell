@@ -15,6 +15,7 @@ import Logging
 
 // MARK: - Protocols
 @MainActor
+/// Manages an ongoing workout, dispatching changes through Publishers.
 protocol WorkoutSessionManagement {
     // MARK: Published Properties
     var totalElapsedTime: CurrentValueSubject<TimeInterval?, Never> { get }
@@ -38,7 +39,7 @@ protocol WorkoutSessionManagement {
     func endWorkout() async
     func clearWorkout() async
 
-    func recoverWorkout() async
+    func tryToRecoverWorkout() async
 }
 
 // MARK: - WorkoutManager
@@ -78,11 +79,11 @@ class WorkoutSessionManager: NSObject,
     private var preferences: UserPreference!
 
     private var isWorkoutInBetweenRounds = false {
-        didSet { saveCurrentRound(currentRound, isInBetweenRounds: isWorkoutInBetweenRounds) }
+        didSet { saveIsWorkoutInBetweenRounds(isWorkoutInBetweenRounds) }
     }
 
     private var currentRound: Int = 0 {
-        didSet { saveCurrentRound(currentRound, isInBetweenRounds: isWorkoutInBetweenRounds) }
+        didSet { saveCurrentRound(currentRound) }
     }
 
     private var remainingDurationInCurrentRound: TimeInterval? {
@@ -130,16 +131,21 @@ class WorkoutSessionManager: NSObject,
 
         await updateModels()
 
-        let now = Date.now
-        startDate = now
-        await elapsedTimeTracker.startTracking(from: now) { @MainActor [weak self] elaspedTime in
-            await self?.handleElapsedTimeTick(elaspedTime: elaspedTime)
-        }
-
-        await healthKitManager.discardPreviousWorkout()
-
         do {
+            try await healthKitManager.requestAccessToHealthStore()
+            await healthKitManager.discardPreviousWorkout()
+
             try await healthKitManager.startWorkout()
+
+            saveIsWorkoutInBetweenRounds(isWorkoutInBetweenRounds)
+            saveCurrentRound(currentRound)
+
+            let now = Date.now
+            startDate = now
+            await elapsedTimeTracker.startTracking(from: now) { @MainActor [weak self] time in
+                await self?.handleElapsedTimeTick(elaspedTime: time)
+            }
+
             await startWorkoutCountdown()
         } catch let error as DisplayableError {
             await notifyError(error)
@@ -212,14 +218,27 @@ class WorkoutSessionManager: NSObject,
         clearOngoingWorkout()
     }
 
-    func recoverWorkout() async {
+    func tryToRecoverWorkout() async {
+        // No workouts can be recovered if the user hasn't started one yet.
+        guard Defaults[.hasSeenWelcomeMessage] else { return }
+
+        logger.info("Looking for recoverable workouts…")
+
         await updateModels()
 
         do {
-            try await healthKitManager.recoverWorkout()
+            try await healthKitManager.tryToRecoverWorkout()
+            logger.info("Recoverable workout found, loading previous data…")
+            await connectWithHealthKit()
             await recoverWorkoutData()
         } catch let error as DisplayableError {
-            await notifyError(error)
+            if let workoutError = error as? WorkoutError,
+               case .noRestorableWorkouts = workoutError {
+                logger.info("No workouts to recover.")
+                // Doing nothing, because that means there no workout to recover.
+            } else {
+                await notifyError(error)
+            }
         } catch {
             // This can't happen, because 'healthKitManager.endWorkout()' only throws
             // "WorkoutError".
@@ -353,8 +372,11 @@ class WorkoutSessionManager: NSObject,
         updateState(to: nil)
     }
 
-    private func saveCurrentRound(_ round: Int, isInBetweenRounds: Bool) {
+    private func saveCurrentRound(_ round: Int) {
         Defaults[.currentRound] = round
+    }
+
+    private func saveIsWorkoutInBetweenRounds(_ isInBetweenRounds: Bool) {
         Defaults[.isWorkoutInBetweenRounds] = isInBetweenRounds
     }
 

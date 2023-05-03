@@ -77,7 +77,7 @@ actor MockSpyHealthKitManager: HealthKitManagement {
         didDiscardPreviousWorkout = true
     }
 
-    func recoverWorkout() async throws {
+    func tryToRecoverWorkout() async throws {
         didRecover = true
 
         if isErrorTriggerEnabled {

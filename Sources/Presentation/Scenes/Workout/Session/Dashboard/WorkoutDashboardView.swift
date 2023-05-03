@@ -60,6 +60,8 @@ struct WorkoutDashboardView: View {
     }
 }
 
+#if DEBUG
+
 // MARK: - Previews
 struct WorkoutInformationView_Previews: PreviewProvider {
     static let workoutSessionManager = WorkoutSessionManagerPreview()
@@ -84,3 +86,5 @@ struct WorkoutInformationView_Previews: PreviewProvider {
         }
     }
 }
+
+#endif
