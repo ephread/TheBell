@@ -1,6 +1,11 @@
 # ![The Bell](Documentation/git_banner.png)
 
-A round-based HIIT timer for Apple Watch.
+<div align="center">
+<p>A timer app designed for high-intensity interval workouts.</p>
+<a href="https://apps.apple.com/us/app/apple-store/id1522205874">
+<img src="Documentation/download_on_the_app_store.svg" alt="Download on the App Store" />
+</a>
+</div>
 
 ## Table of Content
 
@@ -95,7 +100,7 @@ Here are some tasks that I plan to work on for The Bell as time allows.
 
 ## License
 
-The codebase is licensed under the terms of the Apache License 2.0, see [LICENSE.APACHE]
+The codebase is licensed under the terms of the Apache License 2.0, see [LICENSE]
 for more information. It includes code inspired by DebouncedOnChange,
 licensed under the terms of the MIT license.
 
@@ -109,9 +114,9 @@ see [LICENSE.CC0]. They were sourced from freesound.org and remixed:
 - [sheepbone flute] by [magnuswaker]
 - [Loony & Wacky » Boing 1] by [Hedmarking]
 
-[LICENSE.APACHE]: LICENSE.APACHE.txt
-[LICENSE.CC-BY-NC-ND]: LICENSE.CC-BY-NC-ND.txt
-[LICENSE.CC0]: LICENSE.CC0.txt
+[LICENSE]: LICENSE
+[LICENSE.CC-BY-NC-ND]: LICENSE.CC-BY-NC-ND
+[LICENSE.CC0]: LICENSE.CC0
 
 [DebouncedOnChange]: https://github.com/Tunous/DebouncedOnChange
 
