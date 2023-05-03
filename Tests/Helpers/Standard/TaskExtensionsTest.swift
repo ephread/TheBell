@@ -1,11 +1,15 @@
 //
-// Copyright © 2020-2023 Frédéric Maquin <fred@ephread.com>
+// Copyright © 2023 Frédéric Maquin <fred@ephread.com>
+// Licensed under the terms of the Apache License 2.0
+//
 // Copyright © 2022 Łukasz Rutkowski
-// All Rights Reserved
+// Licensed under the terms of the MIT License
 //
 
 import XCTest
 @testable import The_Bell
+
+// Inspired by https://github.com/Tunous/DebouncedOnChange; MIT licensed.
 
 final class TaskExtensionsTest: XCTestCase {
     // MARK: Tests

@@ -96,20 +96,25 @@ Here are some tasks that I plan to work on for The Bell as time allows.
 ## License
 
 The codebase is licensed under the terms of the Apache License 2.0, see [LICENSE.APACHE]
-for more information.
+for more information. It includes code inspired from [DebouncedOnChange],
+licensed under the terms of the MIT license.
 
 Image assets are licensed under the terms of the Creative Commons
 Attribution-NonCommercial-NoDerivatives 4.0 International License, see [LICENSE.CC-BY-NC-ND]
 for more information.
 
-Audio assets are licensed under terms of the Creative Commons CC0 1.0 Universal License. They were
-sourced from freesound.org and remixed:
+Audio assets are licensed under terms of the Creative Commons CC0 1.0 Universal License,
+see [LICENSE.CC0]. They were sourced from freesound.org and remixed:
 
 - [sheepbone flute] by [magnuswaker]
 - [Loony & Wacky » Boing 1] by [Hedmarking]
 
-[LICENSE.APACHE]: ./Licenses/LICENSE.APACHE
-[LICENSE.CC-BY-NC-ND]: ./Licenses/LICENSE.CC-BY-NC-ND
+[LICENSE.APACHE]: LICENSE.APACHE.txt
+[LICENSE.CC-BY-NC-ND]: LICENSE.CC-BY-NC-ND.txt
+[LICENSE.CC0]: LICENSE.CC0.txt
+
+[DebouncedOnChange]: https://github.com/Tunous/DebouncedOnChange
+
 [freesound.org]: https://freesound.org/
 
 [sheepbone flute]: https://freesound.org/people/Hedmarking/sounds/179061/

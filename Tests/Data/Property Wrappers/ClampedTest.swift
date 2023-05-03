@@ -1,7 +1,6 @@
 //
-// Copyright © 2020-2023 Frédéric Maquin <fred@ephread.com>
-// Copyright © 2022 Łukasz Rutkowski
-// All Rights Reserved
+// Copyright © 2023 Frédéric Maquin <fred@ephread.com>
+// Licensed under the terms of the Apache License 2.0
 //
 
 import XCTest
