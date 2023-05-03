@@ -1555,7 +1555,7 @@
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = The_Bell_WatchKit_App.ComplicationController;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Heart rate and energy expenditure are dislayed during workouts.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Heart rate and energy expenditure are displayed during workouts.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Write access is required to record workouts.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -1591,7 +1591,7 @@
 				DEVELOPMENT_TEAM = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = The_Bell_WatchKit_App.ComplicationController;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Heart rate and energy expenditure are dislayed during workouts.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Heart rate and energy expenditure are displayed during workouts.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Write access is required to record workouts.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";

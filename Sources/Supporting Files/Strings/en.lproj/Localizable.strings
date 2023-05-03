@@ -5,7 +5,7 @@
 
 // MARK: - HealthKit
 "NSHealthUpdateUsageDescription" = "Write access is required to record workouts.";
-"NSHealthShareUsageDescription" = "Heart rate and energy expenditure are dislayed during workouts.";
+"NSHealthShareUsageDescription" = "Heart rate and energy expenditure are displayed during workouts.";
 
 // MARK: - General
 "general.button.done" = "Done";
