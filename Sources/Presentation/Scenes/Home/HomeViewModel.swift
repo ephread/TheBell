@@ -44,6 +44,9 @@ protocol HomeViewModeling: ViewModeling {
 
     /// Prepare the workout and display the countdown.
     func prepareWorkout() async
+
+    /// Dismiss the welcome sheet.
+    func onboardingDidComplete()
 }
 
 // MARK: - Main Class
@@ -121,6 +124,16 @@ class HomeViewModel: HomeViewModeling {
 
     func prepareWorkout() async {
         await workoutSessionManager.prepareWorkout()
+    }
+
+    func onboardingDidComplete() {
+        navigationBarDisplayMode = .automatic
+        isNavigationBarHidden = false
+        navigationTitle = L10n.General.theBell
+
+        withAnimation {
+            isWelcomeMessageDisplayed = false
+        }
     }
 
     private func handleState(_ state: WorkoutState?) {

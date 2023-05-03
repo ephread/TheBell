@@ -177,6 +177,8 @@ struct DurationPickerPreview: View {
     }
 }
 
+#if DEBUG
+
 struct DurationPickerView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -190,3 +192,5 @@ struct DurationPickerView_Previews: PreviewProvider {
         }
     }
 }
+
+#endif

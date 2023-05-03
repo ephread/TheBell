@@ -8,6 +8,10 @@ import Foundation
 // MARK: - Protocols
 @MainActor
 /// Tracks the remaining time in a round.
+///
+/// The concrete implementation doesn't need to deal with a suspended process,
+/// because it's intended to be used when a workout is ongoing (i.e. the app
+/// remains in the foreground).
 protocol RoundCountdownTimeManagement {
     // MARK: Properties
     var remainingDuration: TimeInterval { get async }
@@ -15,14 +19,43 @@ protocol RoundCountdownTimeManagement {
     var isPaused: Bool { get async }
 
     // MARK: Methods
+
+    /// Starts the timer.
+    ///
+    /// `onTick` is called immediately upon starting.
+    ///
+    /// - Parameters:
+    ///   - duration: The duration to count down.
+    ///   - onTick: A closure to invoke every time a second is counted down.
     func start(
         with duration: TimeInterval,
         onTick: @MainActor @Sendable @escaping (TimeInterval) async -> Void
     ) async
 
+    /// Pauses the countdown.
+    ///
+    /// If this instance is paused or hasn't started counting,
+    /// this method does nothing.
+    ///
+    /// This method does not invoke the closure passed to ``start(with:onTick:)``.
     func pause() async
+
+    /// Resumes the countdown.
+    ///
+    /// If this instance is not paused or hasn't started counting,
+    /// this method does nothing.
+    ///
+    /// This method invokes the closure passed to ``start(with:onTick:)``.
     func resume() async
+
+    /// Stop the countdown.
+    ///
+    /// If this instance hasn't started counting, this method does nothing.
+    ///
+    /// This method does not invokes the closure passed to ``start(with:onTick:)``
     func stop() async
+
+    /// Resets the countdown.
     func reset() async
 }
 
@@ -60,6 +93,7 @@ class RoundCountdownTimer: RoundCountdownTimeManagement {
 
     func stop() async {
         await timer?.cancel()
+        isCountingDown = false
     }
 
     func reset() async {

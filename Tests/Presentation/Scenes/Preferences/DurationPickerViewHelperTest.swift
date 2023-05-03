@@ -22,21 +22,27 @@ final class DurationPickerViewHelperTest: XCTestCase {
     // MARK: Tests
     func testMakeMinuteOptionsEdgeCases() {
         let options = sut.makeMinuteOptions(range: 0...0, step: 10)
-        XCTAssertTrue(options.isEmpty)
+        XCTAssertEqual(options, [0])
 
-        let options2 = sut.makeMinuteOptions(range: 0...10, step: Int.max)
-        XCTAssertTrue(options2.isEmpty)
+        let options2 = sut.makeMinuteOptions(range: 0...10, step: 1)
+        XCTAssertEqual(options2, [0])
 
-        let options3 = sut.makeMinuteOptions(range: 60...60, step: 1)
-        XCTAssertEqual(options3, [1])
+        let options3 = sut.makeMinuteOptions(range: 0...10, step: Int.max)
+        XCTAssertEqual(options3, [0])
+
+        let options4 = sut.makeMinuteOptions(range: 0...60, step: 2)
+        XCTAssertEqual(options4, [0])
+
+        let options5 = sut.makeMinuteOptions(range: 60...60, step: 1)
+        XCTAssertEqual(options5, [1])
     }
 
     func testMakeSecondOptionsEdgeCases() {
         let options = sut.makeSecondOptions(range: 0...0, step: 10)
-        XCTAssertTrue(options.isEmpty)
+        XCTAssertEqual(options, [0])
 
         let options2 = sut.makeSecondOptions(range: 0...10, step: Int.max)
-        XCTAssertTrue(options2.isEmpty)
+        XCTAssertEqual(options2, [0])
 
         let options3 = sut.makeSecondOptions(range: 60...60, step: 1)
         XCTAssertEqual(options3, [60])

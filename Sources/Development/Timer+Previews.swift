@@ -47,7 +47,7 @@ class TimerPreviewViewModel: ObservableObject {
 }
 
 struct TimerPreview: View {
-    @ObservedObject var sut = TimerPreviewViewModel()
+    @ObservedObject var viewModel = TimerPreviewViewModel()
 
     var body: some View {
         HStack {
@@ -58,13 +58,13 @@ struct TimerPreview: View {
             }
 
             VStack(alignment: .leading) {
-                Text("\(sut.count)")
-                Text(sut.elapsedTimeLabel)
-                Text("\(sut.remainingTimeLabel)")
+                Text("\(viewModel.count)")
+                Text(viewModel.elapsedTimeLabel)
+                Text("\(viewModel.remainingTimeLabel)")
             }
         }
         .task {
-            Task { await sut.appear() }
+            Task { await viewModel.appear() }
         }
 
     }

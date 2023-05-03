@@ -7,29 +7,67 @@ import Foundation
 
 // MARK: - Main Protocol
 /// Tracks the total time elapsed in a workout.
+///
+/// The concrete implementation doesn't need to deal with a suspended process,
+/// because it's intended to be used when a workout is ongoing (i.e. the app
+/// remains in the foreground).
 @MainActor
 protocol ElapsedTimeTracking: AnyObject {
     // MARK: Properties
+    /// The number of seconds elapsed since the reference date
+    ///  (see ``startTracking(from:onTick:)``, minus the time spend paused.
     var elapsedTime: TimeInterval { get async }
 
     var isTracking: Bool { get async }
     var isPaused: Bool { get async }
 
     // MARK: Methods
+
+    /// Starts counting time elapsed since `date`.
+    ///
+    /// - Parameters:
+    ///   - date: The start date to use.
+    ///   - onTick: A closure to call about every second.
     func startTracking(
         from date: Date,
         onTick: @MainActor @Sendable @escaping (TimeInterval) async -> Void
     ) async
 
+    /// Starts counting time elapsed since now minus `elapsedTime`.
+    /// This method is used when restoring a workout.
+    ///
+    /// - Parameters:
+    ///   - elapsedTime: A negative offset in seconds.
+    ///   - onTick: A closure to call about every second.
     func startTracking(
         from elapsedTime: TimeInterval,
         onTick: @MainActor @Sendable @escaping (TimeInterval) async -> Void
     ) async
 
+    /// Pauses the tracker.
+    ///
+    /// If this instance is paused or isn't tracking,
+    /// this method does nothing.
+    ///
+    /// This method does not invoke the closure passed to ``startTracking(from:onTick:)``.
     func pauseTracking() async
+
+    /// Resumes the tracker.
+    ///
+    /// If this instance is not paused or isn't tracking,
+    /// this method does nothing.
+    ///
+    /// This method invokes the closure passed to ``startTracking(from:onTick:)``.
     func resumeTracking() async
+
+    /// Pauses the tracker.
+    ///
+    /// If this instance isn't tracking, this method does nothing.
+    ///
+    /// This method invokes the closure passed to ``startTracking(from:onTick:)``.
     func stopTracking() async
 
+    /// Resets the tracker.
     func reset() async
 }
 
@@ -68,13 +106,14 @@ class ElapsedTimeTracker: ElapsedTimeTracking {
     ) async {
         guard !isTracking else { return }
 
-        await initializeTimer()
         await reset()
 
         self.onTick = onTick
         self.isTracking = true
         self.startDate = date
 
+        await initializeTimer()
+        await notify()
         await timer?.start()
     }
 
@@ -84,13 +123,14 @@ class ElapsedTimeTracker: ElapsedTimeTracking {
     ) async {
         guard !isTracking else { return }
 
-        await initializeTimer()
         await reset()
 
         self.onTick = onTick
         self.isTracking = true
         self.startDate = Date.now.addingTimeInterval(-elapsedTime)
 
+        await initializeTimer()
+        await notify()
         await timer?.start()
     }
 

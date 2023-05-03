@@ -14,14 +14,14 @@ import Defaults
 final class WorkoutSummaryViewModelTest: XCTestCase {
     // MARK: Properties
     private var workoutSessionManager: MockSpyWorkoutSessionManager!
-    private var viewModel: WorkoutSummaryViewModel!
+    private var sut: WorkoutSummaryViewModel!
 
     // MARK: Setup and Teardown
     override func setUp() async throws {
         try await super.setUp()
 
         workoutSessionManager = MockSpyWorkoutSessionManager()
-        viewModel = WorkoutSummaryViewModel(
+        sut = WorkoutSummaryViewModel(
             workoutSessionManager: workoutSessionManager,
             dateTimeHelper: DateTimeHelper()
         )
@@ -29,28 +29,28 @@ final class WorkoutSummaryViewModelTest: XCTestCase {
 
     // MARK: Tests
     func testThatOnlyCompletionUpdatesSummary() async {
-        let nilData = ViewModelData(viewModel: viewModel)
-        await viewModel.appear()
+        let nilData = ViewModelData(viewModel: sut)
+        await sut.appear()
 
         workoutSessionManager.sendState(.idle)
-        await MainActor.run { XCTAssertEqual(nilData, ViewModelData(viewModel: viewModel)) }
+        await MainActor.run { XCTAssertEqual(nilData, ViewModelData(viewModel: sut)) }
 
         workoutSessionManager.sendState(.running)
-        await MainActor.run { XCTAssertEqual(nilData, ViewModelData(viewModel: viewModel)) }
+        await MainActor.run { XCTAssertEqual(nilData, ViewModelData(viewModel: sut)) }
 
         workoutSessionManager.sendState(.paused)
-        await MainActor.run { XCTAssertEqual(nilData, ViewModelData(viewModel: viewModel)) }
+        await MainActor.run { XCTAssertEqual(nilData, ViewModelData(viewModel: sut)) }
 
         workoutSessionManager.sendState(.error(nil))
-        await MainActor.run { XCTAssertEqual(nilData, ViewModelData(viewModel: viewModel)) }
+        await MainActor.run { XCTAssertEqual(nilData, ViewModelData(viewModel: sut)) }
 
         workoutSessionManager.sendState(.completed(.preview))
-        await MainActor.run { XCTAssertNotEqual(nilData, ViewModelData(viewModel: viewModel)) }
+        await MainActor.run { XCTAssertNotEqual(nilData, ViewModelData(viewModel: sut)) }
     }
 
     func testThatDismissingClearsTheCurrentWorkout() async {
-        await viewModel.appear()
-        await viewModel.dismiss()
+        await sut.appear()
+        await sut.dismiss()
 
         XCTAssertTrue(workoutSessionManager.didClearWorkout)
     }

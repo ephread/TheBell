@@ -3,6 +3,8 @@
 // Licensed under the terms of the Apache License 2.0
 //
 
+#if DEBUG
+
 import Foundation
 
 actor FakeHealthKitManager: HealthKitManagement {
@@ -65,7 +67,7 @@ actor FakeHealthKitManager: HealthKitManagement {
 
     }
 
-    func recoverWorkout() async throws {
+    func tryToRecoverWorkout() async throws {
 
     }
 
@@ -81,3 +83,5 @@ actor FakeHealthKitManager: HealthKitManagement {
         await delegate?.didUpdate(activeCalories: activeCalories)
     }
 }
+
+#endif

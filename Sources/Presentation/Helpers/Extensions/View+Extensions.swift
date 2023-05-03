@@ -39,6 +39,8 @@ extension View {
     }
 }
 
+#if DEBUG
+
 // MARK: - Previews
 struct ViewExtensions_Previews: PreviewProvider {
     @State static var error: (any DisplayableError)? = WorkoutError.couldNotEndWorkout(nil)
@@ -48,3 +50,5 @@ struct ViewExtensions_Previews: PreviewProvider {
             .alert(error: $error)
     }
 }
+
+#endif

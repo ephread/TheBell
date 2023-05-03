@@ -11,9 +11,11 @@ struct DurationPickerViewHelper {
     ///
     /// This methods understands that one minutes equals sixty seconds.
     /// For instance:
-    ///     1. if `range.upperBound` is greater than 60 and `step` is `10`,
+    ///     1. if `step` is greater than `range`'s count, this
+    ///        method returns an empty array.
+    ///     2. if `range.upperBound` is greater than 60 and `step` is `10`,
     ///        the method will return `[0, 10, 20, 30, 40, 50]`;
-    ///     2. if `range.lowerBound` is `5`, `range.upperBound` is 23 and
+    ///     3. if `range.lowerBound` is `5`, `range.upperBound` is 23 and
     ///        `step` is `5`, the method will return `[5, 10, 15, 20, 40, 50]`.
     ///
     /// **Preconditions**
@@ -44,6 +46,10 @@ struct DurationPickerViewHelper {
             let sLowerBound = max(step, range.lowerBound)
             let sUpperBound = range.upperBound
 
+            guard sUpperBound > 0, sLowerBound > 0, sUpperBound >= sLowerBound else {
+                return [0]
+            }
+
             return Array(stride(from: sLowerBound, through: sUpperBound, by: step))
         }
     }
@@ -53,11 +59,13 @@ struct DurationPickerViewHelper {
     ///
     /// This methods understands that one minutes equals sixty seconds.
     /// For instance:
-    ///     1. if `range.upperBound` is lower than 60 this method returns
+    ///     1. if 60 times `step` is greater than `range`'s count, this method
+    ///        returns an array containing zero;
+    ///     2. if `range.upperBound` is lower than 60 this method returns
     ///        an array containing zero;
-    ///     2. if `range.lowerBound` is `5`, range.upperBound` is 300 and
+    ///     3. if `range.lowerBound` is `5`, range.upperBound` is 300 and
     ///        `step` is `1`, the method will return `[0, 1, 2, 3, 4, 5]`;
-    ///     3. if `range.lowerBound` is `65`, range.upperBound` is 300 and
+    ///     4. if `range.lowerBound` is `65`, range.upperBound` is 300 and
     ///        `step` is `2`, the method will return `[1, 3, 5]`.
     ///
     /// **Preconditions**

@@ -95,6 +95,8 @@ struct WorkoutCountdownView: View {
     }
 }
 
+#if DEBUG
+
 // MARK: - Previews
 struct WorkoutCountdownView_Previews: PreviewProvider {
     @StateObject static var viewModel = WorkoutViewModelPreview(
@@ -119,3 +121,5 @@ struct WorkoutCountdownView_Previews: PreviewProvider {
         }
     }
 }
+
+#endif

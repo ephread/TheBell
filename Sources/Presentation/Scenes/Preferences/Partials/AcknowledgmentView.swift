@@ -57,6 +57,8 @@ struct AcknowledgmentView: View {
     }
 }
 
+#if DEBUG
+
 struct AcknowledgmentView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
@@ -64,3 +66,5 @@ struct AcknowledgmentView_Previews: PreviewProvider {
         }
     }
 }
+
+#endif

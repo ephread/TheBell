@@ -89,6 +89,8 @@ struct MainView_Previews: PreviewProvider {
     }
 }
 
+#if DEBUG
+
 /// Previews error logic.
 struct MainViewError_Previews: PreviewProvider {
     private static let errorViewModel = ErrorViewModel()
@@ -113,3 +115,5 @@ struct MainViewError_Previews: PreviewProvider {
         }
     }
 }
+
+#endif
