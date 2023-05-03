@@ -3,8 +3,9 @@
 // Licensed under the terms of the Apache License 2.0
 //
 
-DEVELOPMENT_TEAM = //3SC5U49EA8
+DEVELOPMENT_TEAM = // Team ID
 
 // 'DISAMBIGUATOR' is inserted in the bundle ID ensures that
 // Xcode's automatic provisioning can create a profile out of the box.
-DISAMBIGUATOR = ${DEVELOPMENT_TEAM}
+// If you intend to run The Bell on a device, uncomment below.
+DISAMBIGUATOR = // ${DEVELOPMENT_TEAM}

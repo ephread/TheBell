@@ -38,9 +38,9 @@ Throughout the process, I reworked approximately 70% of the app's codebase. Look
 2. (Optional) Install [Mint] and ensure it's available in the `PATH` loaded by Xcode.
    - Run `mint bootstrap`
 3. Copy `main.xcconfig.example` and rename it to `main.xcconfig`
-   - In `main.xccconfig`, set `DEVELOPMENT_TEAM` to a valid identifier.
+   - In `main.xccconfig`, set `DEVELOPMENT_TEAM` to a valid identifier and `DISAMBIGUATOR` to `${DEVELOPMENT_TEAM}`.
    - Alternatively, if you plan to run the app on the simulator, you can leave
-     `DEVELOPMENT_TEAM` blank and set `DISAMBIGUATOR` to a random string.
+     `DEVELOPMENT_TEAM` and `DISAMBIGUATOR` blank.
 4. Copy the content of `Supporting Files/Assets/Sounds/cc0` to `Supporting Files/Assets/Sounds/`, see [Audio Assets] for more information.
 5. Open Xcode and run the project!
 
@@ -54,7 +54,7 @@ Throughout the process, I reworked approximately 70% of the app's codebase. Look
 The Bell uses a three-tier architecture with MVVM in the presentation layer. While the layers are not completely separated, they could be easily decoupled with minimal work. For example:
 
 1. the simplicity of the data model in The Bell allows for the presentation layer to directly query repositories, as the data is often not converted or manipulated by the application layer;
-2. `UserPreference` and `Workout` are both plain structs, easily created and mocked, and thus not abstracted;
+2. `UserPreference` and `Workout` are both plain structs, easily created and mocked and thus not abstracted;
 3. application-level data models like `WorkoutSummary` are also freely passed around.
 
 However, a more complex app would benefit from having different types encapsulating the data in the different layers, even if they match 1:1 (in that case, type aliases could be used).
@@ -96,7 +96,7 @@ Here are some tasks that I plan to work on for The Bell as time allows.
 ## License
 
 The codebase is licensed under the terms of the Apache License 2.0, see [LICENSE.APACHE]
-for more information. It includes code inspired from [DebouncedOnChange],
+for more information. It includes code inspired by DebouncedOnChange,
 licensed under the terms of the MIT license.
 
 Image assets are licensed under the terms of the Creative Commons
