@@ -5,21 +5,25 @@ A round-based HIIT timer for Apple Watch.
 ## Table of Content
 
 - [Table of Content](#table-of-content)
+- [History](#history)
 - [Getting Started](#getting-started)
   - [Requirements](#requirements)
   - [Installation](#installation)
-  - [Architecture \& Rational](#architecture--rational)
+- [Architecture \& Rational](#architecture--rational)
+  - [Overview](#overview)
+  - [Tiers and naming conventions](#tiers-and-naming-conventions)
+  - [Navigation](#navigation)
   - [Why do audio assets sound silly?](#why-do-audio-assets-sound-silly)
-- [History and Future](#history-and-future)
+  - [Future](#future)
 - [License](#license)
 
 ## History
 
-I first developed The Bell during the 2020 lockdowns to further familiarise myself with watchOS. The first version used WatchKit; when Apple released the Apple Watch Series 7, it became clear that WatchKit was no longer the preferred toolkit as some new APIs were SwiftUI-only.
+During the 2020 lockdowns, I created The Bell app as a way to further explore watchOS development. Initially built using WatchKit, I later discovered that newer APIs were SwiftUI-only after the release of the Apple Watch Series 7.
 
-In early 2023, I revisited the App by converting the UI layer to SwiftUI and moving to the async/await APIs. Since I never intended The Bell to be anything more than a functional proof of concept, I decided to open-source it.
+In early 2023, I decided to revisit the app and update it by transitioning the UI layer to SwiftUI and implementing async/await APIs. With no intention of monetizing it, I chose to open-source The Bell as a functional proof-of-concept.
 
-I reworked about 70% of the app. If I had to start it from scratch today, I would probably use an Elm/redux-inspired architecture instead of MVVM.
+Throughout the process, I reworked approximately 70% of the app's codebase. Looking back, if I were to start from scratch today, I would likely opt for an Elm/redux-inspired architecture over MVVM.
 
 ## Getting Started
 
@@ -47,15 +51,15 @@ I reworked about 70% of the app. If I had to start it from scratch today, I woul
 
 ### Overview
 
-The Bell uses a three-tier architecture with MVVM in the presentation layer. To keep things simple, layers are not entirely decoupled from each other (but could become so with minimal work). For example:
+The Bell uses a three-tier architecture with MVVM in the presentation layer. While the layers are not completely separated, they could be easily decoupled with minimal work. For example:
 
-1. since the data model is simple and often not converted/manipulated by the application layer, the presentation layer can query repositories directly;
-2. `UserPreference` and `Workout` are plain structs that can be easily created/mocked and are thus not abstracted.
-3. Application-level data models like `WorkoutSummary` are also freely passed around.
+1. the simplicity of the data model in The Bell allows for the presentation layer to directly query repositories, as the data is often not converted or manipulated by the application layer;
+2. `UserPreference` and `Workout` are both plain structs, easily created and mocked, and thus not abstracted;
+3. application-level data models like `WorkoutSummary` are also freely passed around.
 
 However, a more complex app would benefit from having different types encapsulating the data in the different layers, even if they match 1:1 (in that case, type aliases could be used).
 
-The Bell relies heavily on protocols and dependency injection to make view models, managers and helpers testable in isolation.
+The Bell relies heavily on protocols and dependency injection to ensure that view models, managers, and helpers can be tested in isolation.
 
 ### Tiers and naming conventions
 
@@ -77,7 +81,17 @@ The Bell has a very simple navigation pattern, therefore, `NavigationPath` and/o
 
 ### Why do audio assets sound silly?
 
-The App Store version uses audio assets that can't be freely distributed. Therefore, they have been replaced by public domain equivalents. Yes, they sound silly.
+The audio assets used in the App Store version of the app cannot be freely distributed, so I had to replace them with public domain equivalents. I intentionally chose some silly sounds to keep things fun and lighthearted. Who knew that public-domain audio could be so fun?
+
+### Future
+
+Here are some tasks that I plan to work on for The Bell as time allows.
+
+- [ ] Improve the test structure and split test cases between unit and integration tests,
+      especially around time-sensitive code.
+- [ ] Save the workout state in the database instead of using UserDefaults,
+      as this is a remnant of early prototypes.
+- [ ] Allow the creation and management of multiple workouts.
 
 ## License
 
