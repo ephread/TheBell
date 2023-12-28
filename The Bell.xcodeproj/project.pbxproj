@@ -1068,6 +1068,7 @@
 			buildPhases = (
 				B6FF37E02843FA8B0040C8ED /* Resources */,
 				B6AF7F7D2853E01300FE0075 /* [SWIFTGEN] Generate Code  */,
+				B68D249D2B3DE529008B655F /* [SWIFTGEN] Fix Issues */,
 				B6FF37E92843FA8F0040C8ED /* Sources */,
 				B6FF37EA2843FA8F0040C8ED /* Frameworks */,
 				B602A93B29EF526100A39868 /* [SWIFTLINT] Lint Code */,
@@ -1135,7 +1136,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					B6FF37DD2843FA8B0040C8ED = {
 						CreatedOnToolsVersion = 13.4;
@@ -1239,6 +1240,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# For portability. On Apple Silicon, Homebrew is installed in a different place.\nif [ `uname -m` == 'arm64' ] && [ -d /opt/homebrew/bin/ ]; then\n  export PATH=/opt/homebrew/bin:$PATH\nfi\n\nif which mint > /dev/null; then\n    mint run --no-install --mintfile \"$PROJECT_DIR/Mintfile\" \\\n         swiftlint --config \"$PROJECT_DIR/swiftlint.yml\" \"$PROJECT_DIR\"\nelse\n    echo \"⚠️ Mint is not installed!\"\nfi\n";
+		};
+		B68D249D2B3DE529008B655F /* [SWIFTGEN] Fix Issues */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[SWIFTGEN] Fix Issues";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# SwiftGen is largely abandoned and this project needs to move away from it. This fixes an issue with existentials.\n\nsed -i '' 's/args: CVarArg/args: any CVarArg/g' \"$PROJECT_DIR/Sources/Helpers/Generated/Strings+Generated.swift\"\n\n\n";
 		};
 		B6AF7F7D2853E01300FE0075 /* [SWIFTGEN] Generate Code  */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1457,6 +1477,7 @@
 				DEVELOPMENT_TEAM = "$(inherited)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1521,6 +1542,7 @@
 				DEVELOPMENT_TEAM = "$(inherited)";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

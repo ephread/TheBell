@@ -25,7 +25,7 @@ extension Logging.Logger {
     ///    - line: The line this log message originates from (there's usually
     ///            no need to pass it explicitly as it defaults to `#line`).
     func error(
-        _ error: @autoclosure () -> Error,
+        _ error: @autoclosure () -> any Error,
         metadata: @autoclosure () -> Logging.Logger.Metadata? = nil,
         source: @autoclosure () -> String? = nil,
         file: String = #fileID,

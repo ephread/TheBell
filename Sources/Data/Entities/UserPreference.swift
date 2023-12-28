@@ -77,7 +77,7 @@ struct UserPreference: Sendable,
     /// Decodes the preferences.
     ///
     /// - Parameter decoder: The decoder containing the preferences.
-    init(from decoder: Decoder) throws {
+    init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         id = try? values.decode(Int64.self, forKey: .id)
@@ -92,7 +92,7 @@ struct UserPreference: Sendable,
     /// Encodes the preferences.
     ///
     /// - Parameter encoder: The encoder to use.
-    func encode(to encoder: Encoder) throws {
+    func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         try container.encode(id, forKey: .id)

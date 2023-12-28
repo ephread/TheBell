@@ -9,9 +9,9 @@ import GRDB
 enum HealthKitError: DisplayableError {
     case healthKitNotAvailable
 
-    case accessRefused(Error?)
+    case accessRefused((any Error)?)
     case storeNotReady
-    case unitNotAvailable(Error?)
+    case unitNotAvailable((any Error)?)
     case databaseError(DatabaseError)
 
     var title: String {
@@ -28,7 +28,7 @@ enum HealthKitError: DisplayableError {
         }
     }
 
-    var underlyingError: Error? {
+    var underlyingError: (any Error)? {
         switch self {
         case .accessRefused(let error): return error
         case .unitNotAvailable(let error): return error
@@ -50,12 +50,12 @@ enum WorkoutError: DisplayableError {
     case couldNotAccessHealthStore
 
     case couldNotStartWorkout
-    case couldNotStartDataCollection(Error?)
+    case couldNotStartDataCollection((any Error)?)
 
-    case couldNotEndDataCollection(Error?)
-    case couldNotEndWorkout(Error?)
+    case couldNotEndDataCollection((any Error)?)
+    case couldNotEndWorkout((any Error)?)
 
-    case couldNotRestoreWorkout(Error?)
+    case couldNotRestoreWorkout((any Error)?)
     case noRestorableWorkouts
 
     case workoutAlreadyRunning
@@ -79,7 +79,7 @@ enum WorkoutError: DisplayableError {
         }
     }
 
-    var underlyingError: Error? {
+    var underlyingError: (any Error)? {
         switch self {
         case .couldNotStartDataCollection(let error): return error
         case .couldNotEndDataCollection(let error): return error
@@ -101,7 +101,7 @@ enum WorkoutError: DisplayableError {
 enum DatabaseError: DisplayableError {
     case databaseError(GRDB.DatabaseError)
     case persistenceError(GRDB.PersistenceError)
-    case unknownError(Error)
+    case unknownError(any Error)
 
     var title: String {
         return L10n.Error.title
@@ -119,7 +119,7 @@ enum DatabaseError: DisplayableError {
         }
     }
 
-    var underlyingError: Error? {
+    var underlyingError: (any Error)? {
         switch self {
         case .databaseError(let error): return error
         case .persistenceError(let error): return error
@@ -140,7 +140,7 @@ protocol DisplayableError: LocalizedError {
     var title: String { get }
     var message: String { get }
 
-    var underlyingError: Error? { get }
+    var underlyingError: (any Error)? { get }
 }
 
 #if DEBUG
