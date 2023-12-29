@@ -1575,6 +1575,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = "$(inherited)";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = The_Bell_WatchKit_App.ComplicationController;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Heart rate and energy expenditure are displayed during workouts.";
@@ -1611,6 +1612,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 45;
 				DEVELOPMENT_TEAM = "$(inherited)";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = The_Bell_WatchKit_App.ComplicationController;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Heart rate and energy expenditure are displayed during workouts.";
