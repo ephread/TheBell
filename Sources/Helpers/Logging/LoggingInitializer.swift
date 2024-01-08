@@ -109,8 +109,8 @@ class LoggingManager: LoggingManagement {
 
     // MARK: Private Methods
     #if DEBUG
-    private func makeConsoleLogger() -> ConsoleLogger {
-        ConsoleLogger("com.ephread.TheBell.console", logFormat: LogFormatter())
+    private func makeConsoleLogger() -> OSLogger {
+        OSLogger("com.ephread.TheBell.console", logFormat: OSLogFormatter())
     }
     #endif
 
@@ -133,14 +133,14 @@ class LoggingManager: LoggingManagement {
         return try FileRotationLogger(
             "com.ephread.TheBell.file",
             logLevel: logLevel,
-            logFormat: LogFormatter(),
+            logFormat: FileLogFormatter(),
             fileURL: fileURL,
             rotationConfig: rotationConfig
         )
     }
 
     // MARK: Inner Types
-    struct LogFormatter: LogFormattable {
+    struct FileLogFormatter: LogFormattable {
         private let dateFormat: DateFormatter = {
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSZ"
@@ -165,6 +165,31 @@ class LoggingManager: LoggingManagement {
 
             // swiftlint:disable:next line_length
             return "\(date) The Bell[\(threadID)] [\(level)] \(fileName)#L.\(line) \(function) \(message)"
+        }
+    }
+
+    struct OSLogFormatter: LogFormattable {
+        private let dateFormat: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSZ"
+            return formatter
+        }()
+
+        // swiftlint:disable:next function_parameter_count
+        func formatMessage(
+            _ level: LogLevel,
+            message: String,
+            tag: String,
+            function: String,
+            file: String,
+            line: UInt,
+            swiftLogInfo: [String: String],
+            label: String,
+            date: Date,
+            threadID: UInt64
+        ) -> String {
+            let fileName = fileName(file)
+            return "\(fileName)#L.\(line) \(function) \(message)"
         }
     }
 }
