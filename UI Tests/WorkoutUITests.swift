@@ -14,7 +14,7 @@ class WorkoutUITests: XCTestCase {
         // the real logic, therefore we are only testing the navigation here.
         let app = launch()
 
-        let mainScrollView = app.scrollViews["Main_ScrollView"]
+        let mainList = app.collectionViews["Main_List"]
         let workoutButton = app.buttons["Main_WorkoutButton"]
         workoutButton.tap()
 
@@ -45,7 +45,7 @@ class WorkoutUITests: XCTestCase {
             doneButton.tap()
         }
 
-        XCTAssertTrue(mainScrollView.exists)
+        XCTAssertTrue(mainList.exists)
     }
 
     // MARK: Private Helpers

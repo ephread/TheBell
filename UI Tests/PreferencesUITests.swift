@@ -156,7 +156,7 @@ class PreferencesUITests: XCTestCase {
 
     @discardableResult
     private func scrollAndTapOnPreferenceButton(app: XCUIApplication) -> XCUIElement {
-        app.scrollViews["Main_ScrollView"].swipeUp()
+        app.collectionViews["Main_List"].swipeUp()
 
         let preferenceButton = app.buttons["Main_PreferencesButton"]
         if preferenceButton.waitForExistence(timeout: 2) {

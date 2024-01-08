@@ -23,7 +23,7 @@ struct HapticSoundPreferenceView: View {
                     value: $viewModel.audioVolume,
                     in: viewModel.volumeRange,
                     step: 1
-                ) { // False Positive // swiftlint:disable:this vertical_parameter_alignment_on_call
+                ) {
                     Text(viewModel.audioTitle)
                 } minimumValueLabel: {
                     Text(Image(systemName: "speaker.fill"))

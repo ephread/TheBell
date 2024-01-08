@@ -178,8 +178,8 @@ class PreferencesViewModel: PreferencesViewModeling {
     func title(forRow row: PreferenceRow) -> String? {
         return switch row {
         case .maximumHeartRate: L10n.Preference.MaximumHeartRate.short
+        case .roundCount: L10n.Preference.RoundCount.short
         case .roundDuration: L10n.Preference.RoundDuration.short
-        case .breakDuration: L10n.Preference.BreakDuration.short
         case .lastStretchDuration: L10n.Preference.LastStretchDuration.short
         default: nil
         }

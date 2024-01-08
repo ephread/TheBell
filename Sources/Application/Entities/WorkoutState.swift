@@ -6,7 +6,7 @@
 import Foundation
 
 enum WorkoutState: Equatable {
-    static func == (lhs: WorkoutState, rhs: WorkoutState) -> Bool {
+    static func == (lhs: Self, rhs: Self) -> Bool {
         switch (lhs, rhs) {
         case (.idle, .idle): return true
         case (.running, .running): return true

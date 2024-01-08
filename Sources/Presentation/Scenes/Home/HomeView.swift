@@ -57,8 +57,9 @@ struct HomeView: View {
                             .frame(maxWidth: .infinity, alignment: .center)
                     }
                     .foregroundColor(Asset.Colors.accentColor.swiftUIColor)
+                    .accessibilityIdentifier("Main_PreferencesButton")
                 }
-                .accessibilityIdentifier("Main_ScrollView")
+                .accessibilityIdentifier("Main_List")
             }
         }
         .navigationTitle(viewModel.navigationTitle)
