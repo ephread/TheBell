@@ -17,7 +17,7 @@ struct WelcomeView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                Image(Asset.Images.welcome.name)
+                Image(.welcome)
                     .padding(.top, 20)
 
                 Text(L10n.Welcome.description)
@@ -33,13 +33,13 @@ struct WelcomeView: View {
                                 .tint(.black)
                         } else {
                             Text(L10n.Welcome.grantPermissions)
-                                .foregroundColor(.black)
+                                .foregroundStyle(.black)
                                 .fontWeight(.semibold)
                         }
                     }
                 }
                 .buttonStyle(.borderedProminent)
-                .foregroundColor(Color.black)
+                .foregroundStyle(Color.black)
                 .disabled(viewModel.isRequestingAccessToTheHealthStore)
                 .accessibilityIdentifier("Welcome_PermissionButton")
             }

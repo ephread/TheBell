@@ -46,7 +46,7 @@ class WorkoutDashboardViewModel: WorkoutDashboardViewModeling {
     @Published var totalCalories: String = L10n.Placeholder.value
     @Published var currentHeartRate: String = L10n.Placeholder.value
     @Published var heartRateZone: String = L10n.Placeholder.percentageValue
-    @Published var heartRateZoneColor: Color = Asset.Colors.idleHeartRate.swiftUIColor
+    @Published var heartRateZoneColor = Color(.idleHeartRate)
 
     @Published var remainingTime: String = L10n.Placeholder.remainingTime
     @Published var isRemainingTimeVisible = true

@@ -52,7 +52,7 @@ struct DurationPickerView: View {
 
                         Text(hint)
                             .font(.footnote)
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(.secondary)
                             // It's unclear why .fixedSize is required on watchOS, while
                             // .lineLimit is enough on iOS.
                             .fixedSize(horizontal: false, vertical: true)
@@ -70,7 +70,7 @@ struct DurationPickerView: View {
                 Text(label)
                 Text(detailLabel)
                     .font(.caption2)
-                    .foregroundColor(Color.secondary)
+                    .foregroundStyle(Color.secondary)
             }
         }
     }

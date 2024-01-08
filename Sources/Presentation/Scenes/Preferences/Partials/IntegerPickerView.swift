@@ -51,7 +51,7 @@ struct IntegerPickerView: View {
                 Text(detailLabel)
                     .accessibilityIdentifier("Preferences_IntegerPicker_DetailLabel")
                     .font(.caption2)
-                    .foregroundColor(Color.secondary)
+                    .foregroundStyle(Color.secondary)
             }
         }
     }

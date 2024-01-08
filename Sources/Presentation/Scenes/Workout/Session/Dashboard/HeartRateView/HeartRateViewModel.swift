@@ -12,7 +12,7 @@ protocol HeartRateViewModeling: ObservableObject {
     /// The name of the image currently displayed. This property
     /// is updated multiple times per seconds to recreate a beating
     /// heart animation.
-    var currentIconName: String { get }
+    var currentIcon: ImageResource { get }
 
     /// The current state, which informs which image sequence is used
     /// and how fast it animates.
@@ -23,9 +23,10 @@ protocol HeartRateViewModeling: ObservableObject {
     func update(heartRate: HeartRateStyle) async
 }
 
+// TODO: Migrate To Phase Animation or TimelineView.
 class HeartRateViewModel: HeartRateViewModeling {
     // MARK: Published Properties
-    @Published var currentIconName: String = Asset.Images.heartbeatLoading0.name
+    @Published var currentIcon: ImageResource = .heartbeatLoading0
 
     // MARK: Properties
     var heartRateStyle: HeartRateStyle = .loading {
@@ -34,7 +35,7 @@ class HeartRateViewModel: HeartRateViewModeling {
 
     // MARK: Private Properties
     /// Contains a sequence of image names used to create the animation.
-    private var speakerAnimation: [String] = []
+    private var speakerAnimation: [ImageResource] = []
 
     /// The index of the current image displayed, from ``speakerAnimation``.
     private var currentIconIndex: Int = 0
@@ -55,12 +56,18 @@ class HeartRateViewModel: HeartRateViewModeling {
         let timeInterval: CGFloat
         switch heartRate {
         case .loading:
-            currentIconName = Asset.Images.heartbeatLoading0.name
-            speakerAnimation = { (0...60).map { "heartbeat_loading_\($0)" } }()
+            currentIcon = .heartbeatLoading0
+            speakerAnimation = {
+                (0...60).map { ImageResource(name: "heartbeat_loading_\($0)", bundle: .main) }
+            }()
+
             timeInterval = 2.0 / 61.0
         case .beating(let bpm):
-            currentIconName = Asset.Images.heartbeat0.name
-            speakerAnimation = { (0...8).map { "heartbeat_\($0)" } }()
+            currentIcon = .heartbeat0
+            speakerAnimation = {
+                (0...8).map { ImageResource(name: "heartbeat_\($0)", bundle: .main) }
+            }()
+
             timeInterval = (60.0 / CGFloat(bpm)) / 9.0
         }
 
@@ -79,7 +86,7 @@ class HeartRateViewModel: HeartRateViewModeling {
             self.currentIconIndex += 1
         }
 
-        self.currentIconName = self.speakerAnimation[self.currentIconIndex]
+        self.currentIcon = self.speakerAnimation[self.currentIconIndex]
     }
 }
 

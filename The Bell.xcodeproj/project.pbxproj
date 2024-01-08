@@ -123,7 +123,6 @@
 		B6FF3889284406000040C8ED /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FF3860284400810040C8ED /* Int+Extensions.swift */; };
 		B6FF388A284406000040C8ED /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FF385E284400810040C8ED /* TimeInterval+Extensions.swift */; };
 		B6FF388B284406000040C8ED /* DefaultsKeys+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FF385D284400810040C8ED /* DefaultsKeys+Extensions.swift */; };
-		B6FF388D284406040040C8ED /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FF3846284400810040C8ED /* Assets+Generated.swift */; };
 		B6FF388E284406040040C8ED /* Strings+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FF3847284400810040C8ED /* Strings+Generated.swift */; };
 		B6FF388F284406070040C8ED /* Clamped.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FF3868284400810040C8ED /* Clamped.swift */; };
 		B6FF3891284406100040C8ED /* HapticSoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FF383B2844004B0040C8ED /* HapticSoundManager.swift */; };
@@ -232,6 +231,9 @@
 		B6AF7F852853E9C700FE0075 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		B6AF7F872853F60800FE0075 /* The Bell WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "The Bell WatchKit App.entitlements"; sourceTree = "<group>"; };
 		B6B60EB52A00829100B24977 /* WorkoutSessionManagerRecoveryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSessionManagerRecoveryTest.swift; sourceTree = "<group>"; };
+		B6BF62B22B4CB3DF001DF41C /* LICENSE.CC-BY-NC-ND */ = {isa = PBXFileReference; lastKnownFileType = text; path = "LICENSE.CC-BY-NC-ND"; sourceTree = "<group>"; };
+		B6BF62B32B4CB3DF001DF41C /* LICENSE.CC0 */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.CC0; sourceTree = "<group>"; };
+		B6BF62B42B4CB3DF001DF41C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B6BF86F529F7256F00E66B8E /* WorkoutSummaryViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSummaryViewModelTest.swift; sourceTree = "<group>"; };
 		B6BF86F929F72A0F00E66B8E /* WorkoutControlViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutControlViewModelTest.swift; sourceTree = "<group>"; };
 		B6CBA1D829D7809F00AF55D0 /* WorkoutCountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCountdownView.swift; sourceTree = "<group>"; };
@@ -249,8 +251,6 @@
 		B6DEC94B29F9D1C2006D4A0B /* XCUIElement+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+Extensions.swift"; sourceTree = "<group>"; };
 		B6DEC94F29F9D829006D4A0B /* WelcomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeUITests.swift; sourceTree = "<group>"; };
 		B6DEC95129FA0437006D4A0B /* WorkoutButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutButtonStyle.swift; sourceTree = "<group>"; };
-		B6DEC95329FB0F90006D4A0B /* LICENSE.APACHE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.APACHE.txt; sourceTree = "<group>"; };
-		B6DEC95429FB0F90006D4A0B /* LICENSE.CC-BY-NC-ND.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "LICENSE.CC-BY-NC-ND.txt"; sourceTree = "<group>"; };
 		B6DEC95729FB119B006D4A0B /* main.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = main.xcconfig; sourceTree = "<group>"; };
 		B6DFC163289FFD6400D50521 /* HapticSoundPreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticSoundPreferenceView.swift; sourceTree = "<group>"; };
 		B6DFC16828A002C000D50521 /* HapticSoundViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticSoundViewModel.swift; sourceTree = "<group>"; };
@@ -283,7 +283,6 @@
 		B6FF383D2844004B0040C8ED /* DatabaseInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseInitializer.swift; sourceTree = "<group>"; };
 		B6FF383E2844004B0040C8ED /* WorkoutSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSessionManager.swift; sourceTree = "<group>"; };
 		B6FF3842284400810040C8ED /* Resolver+Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+Registration.swift"; sourceTree = "<group>"; };
-		B6FF3846284400810040C8ED /* Assets+Generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		B6FF3847284400810040C8ED /* Strings+Generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Generated.swift"; sourceTree = "<group>"; };
 		B6FF3849284400810040C8ED /* RoundCountdownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCountdownTimer.swift; sourceTree = "<group>"; };
 		B6FF384B284400810040C8ED /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
@@ -813,8 +812,9 @@
 		B6DEC95629FB0FB5006D4A0B /* Licenses */ = {
 			isa = PBXGroup;
 			children = (
-				B6DEC95329FB0F90006D4A0B /* LICENSE.APACHE.txt */,
-				B6DEC95429FB0F90006D4A0B /* LICENSE.CC-BY-NC-ND.txt */,
+				B6BF62B42B4CB3DF001DF41C /* LICENSE */,
+				B6BF62B22B4CB3DF001DF41C /* LICENSE.CC-BY-NC-ND */,
+				B6BF62B32B4CB3DF001DF41C /* LICENSE.CC0 */,
 			);
 			name = Licenses;
 			sourceTree = "<group>";
@@ -1005,7 +1005,6 @@
 		B6FF3845284400810040C8ED /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				B6FF3846284400810040C8ED /* Assets+Generated.swift */,
 				B6FF3847284400810040C8ED /* Strings+Generated.swift */,
 			);
 			path = Generated;
@@ -1348,7 +1347,6 @@
 				B6283818285527C900ECC1AD /* ErrorViewModel.swift in Sources */,
 				B6CBA1F629DCD13500AF55D0 /* HeartRateZone+Colors.swift in Sources */,
 				B6FF3893284406100040C8ED /* WorkoutSessionManager.swift in Sources */,
-				B6FF388D284406040040C8ED /* Assets+Generated.swift in Sources */,
 				B602A94E29F339E300A39868 /* DebugLogViewModel.swift in Sources */,
 				B6FF37F72843FA8F0040C8ED /* ComplicationController.swift in Sources */,
 				B628380F2854E59000ECC1AD /* HomeViewModel.swift in Sources */,
@@ -1492,7 +1490,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1500,7 +1498,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = targeted;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.2;
 			};
 			name = Debug;
 		};
@@ -1551,7 +1549,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1559,7 +1557,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_STRICT_CONCURRENCY = targeted;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.2;
 			};
 			name = Release;
 		};

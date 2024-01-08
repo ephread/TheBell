@@ -27,18 +27,18 @@ struct HomeView: View {
                         Task { await viewModel.prepareWorkout() }
                     } label: {
                         VStack(spacing: 10) {
-                            Image(Asset.Images.workoutButtonIcon.name)
+                            Image(.workoutButtonIcon)
 
                             VStack {
                                 Text(viewModel.buttonTitle)
                                     .font(.caption2)
                                     .fontWeight(.medium)
-                                    .foregroundColor(.black)
+                                    .foregroundStyle(.black)
                                     .textCase(.uppercase)
                                 Text(viewModel.buttonSubtitle)
                                     .font(.footnote)
                                     .fontWeight(.medium)
-                                    .foregroundColor(.black.opacity(0.5))
+                                    .foregroundStyle(.black.opacity(0.5))
                                     .textCase(.uppercase)
                             }
                         }
@@ -56,7 +56,7 @@ struct HomeView: View {
                         Text(L10n.Preference.title)
                             .frame(maxWidth: .infinity, alignment: .center)
                     }
-                    .foregroundColor(Asset.Colors.accentColor.swiftUIColor)
+                    .foregroundStyle(Color.accentColor)
                     .accessibilityIdentifier("Main_PreferencesButton")
                 }
                 .accessibilityIdentifier("Main_List")

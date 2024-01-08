@@ -10,7 +10,7 @@ struct WorkoutButtonStyle: ButtonStyle {
         configuration.label
             .padding()
             .frame(maxWidth: .infinity)
-            .background(Asset.Colors.accentColor.swiftUIColor)
+            .background(Color.accentColor)
             .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
             .opacity(configuration.isPressed ? 0.9 : 1)

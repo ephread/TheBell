@@ -22,7 +22,7 @@ struct WorkoutDashboardView: View {
 
                     Text(viewModel.remainingTime)
                         .bellFont(.time)
-                        .foregroundColor(viewModel.remainingTimeColor)
+                        .foregroundStyle(viewModel.remainingTimeColor)
                         .opacity(viewModel.isRemainingTimeVisible ? 1 : 0)
                         .accessibilityIdentifier("WorkoutDashboard_RemainingTimeLabel")
 
@@ -47,7 +47,7 @@ struct WorkoutDashboardView: View {
                     HStack {
                         Text(viewModel.heartRateZone)
                             .bellFont(.metric)
-                            .foregroundColor(viewModel.heartRateZoneColor)
+                            .foregroundStyle(viewModel.heartRateZoneColor)
                         Text(L10n.Workout.Unit.maximumHeartRate)
                             .bellFont(.unit)
                     }

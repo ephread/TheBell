@@ -32,7 +32,7 @@ struct WorkoutSummaryView: View {
                     Task { await viewModel.dismiss() }
                 } label: {
                     Text(L10n.General.Button.done)
-                        .foregroundColor(.black)
+                        .foregroundStyle(.black)
                         .fontWeight(.semibold)
                 }
                 .buttonStyle(.borderedProminent)
@@ -51,7 +51,7 @@ struct WorkoutSummaryView: View {
             Text(viewModel.summaryTitle)
                 .bellFont(.title)
             Text(viewModel.completionPercentageLabel)
-                .foregroundColor(Asset.Colors.totalTime.swiftUIColor)
+                .foregroundStyle(Color(.totalTime))
                 .font(.footnote)
         }
 
@@ -64,7 +64,7 @@ struct WorkoutSummaryView: View {
             Text(viewModel.totalDurationTitle)
                 .bellFont(.title)
             Text(viewModel.totalDurationLabel)
-                .foregroundColor(Asset.Colors.totalTime.swiftUIColor)
+                .foregroundStyle(Color(.totalTime))
                 .bellFont(.time2)
 
             Divider()
@@ -76,16 +76,16 @@ struct WorkoutSummaryView: View {
     private func activeEnergy() -> some View {
         VStack(alignment: .leading, spacing: -3) {
             Text(viewModel.activeEnergyTitle)
-                .foregroundColor(Color.white)
+                .foregroundStyle(Color.white)
                 .bellFont(.title)
 
             HStack(alignment: .firstTextBaseline) {
                 Text(viewModel.activeEnergyLabel)
-                    .foregroundColor(Asset.Colors.energyBurned.swiftUIColor)
+                    .foregroundStyle(Color(.energyBurned))
                     .bellFont(.metric)
 
                 Text(viewModel.energyUnitLabel)
-                    .foregroundColor(Asset.Colors.energyBurned.swiftUIColor)
+                    .foregroundStyle(Color(.energyBurned))
                     .bellFont(.unit)
             }
 
@@ -98,16 +98,16 @@ struct WorkoutSummaryView: View {
     private func totalEnergy() -> some View {
         VStack(alignment: .leading, spacing: -3) {
             Text(viewModel.totalEnergyTitle)
-                .foregroundColor(Color.white)
+                .foregroundStyle(Color.white)
                 .bellFont(.title)
 
             HStack(alignment: .firstTextBaseline) {
                 Text(viewModel.totalEnergyLabel)
-                    .foregroundColor(Asset.Colors.energyBurned.swiftUIColor)
+                    .foregroundStyle(Color(.energyBurned))
                     .bellFont(.metric)
 
                 Text(viewModel.energyUnitLabel)
-                    .foregroundColor(Asset.Colors.energyBurned.swiftUIColor)
+                    .foregroundStyle(Color(.energyBurned))
                     .bellFont(.unit)
             }
 
@@ -120,26 +120,26 @@ struct WorkoutSummaryView: View {
     private func heartRate() -> some View {
         VStack(alignment: .leading, spacing: -3) {
             Text(viewModel.heartRateTitle)
-                .foregroundColor(Color.white)
+                .foregroundStyle(Color.white)
                 .bellFont(.title)
 
             HStack(alignment: .firstTextBaseline) {
                 Text(viewModel.averageHeartRateLabel)
-                    .foregroundColor(Asset.Colors.heartRate.swiftUIColor)
+                    .foregroundStyle(Color(.heartRate))
                     .bellFont(.metric)
 
                 Text(viewModel.heartRateUnitLabel)
-                    .foregroundColor(Asset.Colors.heartRate.swiftUIColor)
+                    .foregroundStyle(Color(.heartRate))
                     .bellFont(.unit)
             }
 
             VStack(alignment: .leading) {
                 Text(viewModel.heartRateRangeTitle)
-                    .foregroundColor(Color.white.opacity(0.6))
+                    .foregroundStyle(Color.white.opacity(0.6))
                     .bellFont(.title)
 
                 Text(viewModel.heartRateRangeLabel)
-                    .foregroundColor(Asset.Colors.heartRate.swiftUIColor)
+                    .foregroundStyle(Color(.heartRate))
                     .bellFont(.title)
 
                 Divider()
@@ -151,11 +151,11 @@ struct WorkoutSummaryView: View {
     private func dateTime() -> some View {
         VStack(alignment: .leading) {
             Text(viewModel.dateTitle)
-                .foregroundColor(Color.white)
+                .foregroundStyle(Color.white)
                 .bellFont(.title)
 
             Text(viewModel.timeRangeLabel)
-                .foregroundColor(Color.white.opacity(0.6))
+                .foregroundStyle(Color.white.opacity(0.6))
                 .bellFont(.title)
         }
     }

@@ -10,7 +10,7 @@ struct HeartRateView: View {
     @ObservedObject var viewModel: HeartRateViewModel
 
     var body: some View {
-        Image(viewModel.currentIconName)
+        Image(viewModel.currentIcon)
             .resizable()
     }
 }
