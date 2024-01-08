@@ -426,6 +426,8 @@ internal enum L10n {
       internal static func footnote(_ p1: Any, _ p2: Any) -> String {
         return L10n.tr("Localizable", "preference.lastStretchDuration.footnote", String(describing: p1), String(describing: p2), fallback: "Between %@ and %@ (half the duration of the round).")
       }
+      /// Notification
+      internal static let short = L10n.tr("Localizable", "preference.lastStretchDuration.short", fallback: "Notification")
       /// End
       internal static let title = L10n.tr("Localizable", "preference.lastStretchDuration.title", fallback: "End")
       internal enum Footnote {
@@ -438,6 +440,8 @@ internal enum L10n {
     internal enum MaximumHeartRate {
       /// BPM
       internal static let caption = L10n.tr("Localizable", "preference.maximumHeartRate.caption", fallback: "BPM")
+      /// Max Heart Rate
+      internal static let short = L10n.tr("Localizable", "preference.maximumHeartRate.short", fallback: "Max Heart Rate")
       /// Heart Rate
       internal static let title = L10n.tr("Localizable", "preference.maximumHeartRate.title", fallback: "Heart Rate")
     }
@@ -445,9 +449,13 @@ internal enum L10n {
       /// Rounds
       internal static let caption = L10n.tr("Localizable", "preference.roundCount.caption", fallback: "Rounds")
       /// Rounds
+      internal static let short = L10n.tr("Localizable", "preference.roundCount.short", fallback: "Rounds")
+      /// Rounds
       internal static let title = L10n.tr("Localizable", "preference.roundCount.title", fallback: "Rounds")
     }
     internal enum RoundDuration {
+      /// Duration
+      internal static let short = L10n.tr("Localizable", "preference.roundDuration.short", fallback: "Duration")
       /// Duration
       internal static let title = L10n.tr("Localizable", "preference.roundDuration.title", fallback: "Duration")
     }

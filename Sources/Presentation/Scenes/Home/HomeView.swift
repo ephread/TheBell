@@ -22,41 +22,41 @@ struct HomeView: View {
             } else if viewModel.isWorkoutDisplayed {
                 WorkoutView()
             } else {
-                ScrollView {
-                    VStack(spacing: 20) {
-                        Button {
-                            Task { await viewModel.prepareWorkout() }
-                        } label: {
-                            VStack(spacing: 10) {
-                                Image(Asset.Images.workoutButtonIcon.name)
+                List {
+                    Button {
+                        Task { await viewModel.prepareWorkout() }
+                    } label: {
+                        VStack(spacing: 10) {
+                            Image(Asset.Images.workoutButtonIcon.name)
 
-                                VStack {
-                                    Text(viewModel.buttonTitle)
-                                        .font(.caption2)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.black)
-                                        .textCase(.uppercase)
-                                    Text(viewModel.buttonSubtitle)
-                                        .font(.footnote)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.black.opacity(0.5))
-                                        .textCase(.uppercase)
-                                }
+                            VStack {
+                                Text(viewModel.buttonTitle)
+                                    .font(.caption2)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(.black)
+                                    .textCase(.uppercase)
+                                Text(viewModel.buttonSubtitle)
+                                    .font(.footnote)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(.black.opacity(0.5))
+                                    .textCase(.uppercase)
                             }
                         }
-                        .buttonStyle(.workout)
-                        .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
-                        .padding(.top, 20)
-                        .accessibilityIdentifier("Main_WorkoutButton")
-
-                        NavigationLink {
-                            PreferencesView()
-                        } label: {
-                            Text(L10n.Preference.title)
-                        }
-                        .foregroundColor(Asset.Colors.accentColor.swiftUIColor)
-                        .accessibilityIdentifier("Main_PreferencesButton")
+                        .padding(.vertical, 16)
                     }
+                    .buttonStyle(.workout)
+                    .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+                    .accessibilityIdentifier("Main_WorkoutButton")
+                    .listRowBackground(Color.clear)
+                    .listRowInsets(EdgeInsets())
+
+                    NavigationLink {
+                        PreferencesView()
+                    } label: {
+                        Text(L10n.Preference.title)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                    }
+                    .foregroundColor(Asset.Colors.accentColor.swiftUIColor)
                 }
                 .accessibilityIdentifier("Main_ScrollView")
             }
