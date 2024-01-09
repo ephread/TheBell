@@ -27,54 +27,58 @@ struct WorkoutSummaryView: View {
 
                 Spacer()
                     .frame(height: 32)
-
-                Button {
-                    Task { await viewModel.dismiss() }
-                } label: {
-                    Text(L10n.General.Button.done)
-                        .foregroundStyle(.black)
-                        .fontWeight(.semibold)
-                }
-                .buttonStyle(.borderedProminent)
-                .accessibilityIdentifier("WorkoutSummary_DoneButton")
-
             }
         }
         .accessibilityIdentifier("WorkoutSummary_ScrollView")
         .task { await viewModel.appear() }
+        .toolbar {
+            // TODO: Replace by proper sheet.
+            ToolbarItem(placement: .cancellationAction) {
+                Button {
+                    Task { await viewModel.dismiss() }
+                } label: {
+                    Image(systemName: "xmark")
+                }
+                .accessibilityIdentifier("WorkoutSummary_DoneButton")
+            }
+        }
     }
 
     // MARK: Private Methods
     @ViewBuilder
     private func title() -> some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 4) {
             Text(viewModel.summaryTitle)
                 .bellFont(.title)
             Text(viewModel.completionPercentageLabel)
                 .foregroundStyle(Color(.totalTime))
                 .font(.footnote)
+                .fontWeight(.medium)
         }
+        .scenePadding(.horizontal)
 
         Divider()
+            .padding(.vertical, 8)
     }
 
     @ViewBuilder
     private func totalDuration() -> some View {
-        VStack(alignment: .leading, spacing: -4) {
+        VStack(alignment: .leading) {
             Text(viewModel.totalDurationTitle)
                 .bellFont(.title)
             Text(viewModel.totalDurationLabel)
                 .foregroundStyle(Color(.totalTime))
                 .bellFont(.time2)
-
-            Divider()
-                .padding(.top, 4)
         }
+        .scenePadding(.horizontal)
+
+        Divider()
+            .padding(.bottom, 8)
     }
 
     @ViewBuilder
     private func activeEnergy() -> some View {
-        VStack(alignment: .leading, spacing: -3) {
+        VStack(alignment: .leading) {
             Text(viewModel.activeEnergyTitle)
                 .foregroundStyle(Color.white)
                 .bellFont(.title)
@@ -88,15 +92,16 @@ struct WorkoutSummaryView: View {
                     .foregroundStyle(Color(.energyBurned))
                     .bellFont(.unit)
             }
-
-            Divider()
-                .padding(.top, 3)
         }
+        .scenePadding(.horizontal)
+
+        Divider()
+            .padding(.bottom, 8)
     }
 
     @ViewBuilder
     private func totalEnergy() -> some View {
-        VStack(alignment: .leading, spacing: -3) {
+        VStack(alignment: .leading) {
             Text(viewModel.totalEnergyTitle)
                 .foregroundStyle(Color.white)
                 .bellFont(.title)
@@ -110,15 +115,16 @@ struct WorkoutSummaryView: View {
                     .foregroundStyle(Color(.energyBurned))
                     .bellFont(.unit)
             }
-
-            Divider()
-                .padding(.top, 3)
         }
+        .scenePadding(.horizontal)
+
+        Divider()
+            .padding(.bottom, 8)
     }
 
     @ViewBuilder
     private func heartRate() -> some View {
-        VStack(alignment: .leading, spacing: -3) {
+        VStack(alignment: .leading) {
             Text(viewModel.heartRateTitle)
                 .foregroundStyle(Color.white)
                 .bellFont(.title)
@@ -141,10 +147,12 @@ struct WorkoutSummaryView: View {
                 Text(viewModel.heartRateRangeLabel)
                     .foregroundStyle(Color(.heartRate))
                     .bellFont(.title)
-
-                Divider()
             }
         }
+        .scenePadding(.horizontal)
+
+        Divider()
+            .padding(.bottom, 8)
     }
 
     @ViewBuilder
@@ -158,6 +166,7 @@ struct WorkoutSummaryView: View {
                 .foregroundStyle(Color.white.opacity(0.6))
                 .bellFont(.title)
         }
+        .scenePadding(.horizontal)
     }
 }
 
