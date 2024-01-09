@@ -17,25 +17,25 @@ struct HapticSoundPreferenceView: View {
                     Text(viewModel.audioTitle)
                 }
                 .accessibilityIdentifier("Preferences_HapticSound_AudioFeedback")
-                .tint(Asset.Colors.accentColor.swiftUIColor)
+                .tint(.accentColor)
 
                 Slider(
                     value: $viewModel.audioVolume,
                     in: viewModel.volumeRange,
                     step: 1
-                ) { // False Positive // swiftlint:disable:this vertical_parameter_alignment_on_call
+                ) {
                     Text(viewModel.audioTitle)
                 } minimumValueLabel: {
                     Text(Image(systemName: "speaker.fill"))
-                        .foregroundColor(Asset.Colors.accentColor.swiftUIColor)
+                        .foregroundStyle(Color.accentColor)
                 } maximumValueLabel: {
                     Text(Image(systemName: "speaker.wave.3.fill"))
-                        .foregroundColor(Asset.Colors.accentColor.swiftUIColor)
+                        .foregroundStyle(Color.accentColor)
                 }
                 .accessibilityIdentifier("Preferences_HapticSound_AudioVolume")
                 .listRowBackground(Color.clear)
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                .tint(Asset.Colors.accentColor.swiftUIColor)
+                .tint(.accentColor)
 
             } footer: {
                 Text(viewModel.audioFootnote)
@@ -46,7 +46,7 @@ struct HapticSoundPreferenceView: View {
                     Text(viewModel.hapticTitle)
                 }
                 .accessibilityIdentifier("Preferences_HapticSound_HapticFeedback")
-                .tint(Asset.Colors.accentColor.swiftUIColor)
+                .tint(.accentColor)
             } footer: {
                 Text(viewModel.hapticFootnote)
             }

@@ -27,137 +27,146 @@ struct WorkoutSummaryView: View {
 
                 Spacer()
                     .frame(height: 32)
-
-                Button {
-                    Task { await viewModel.dismiss() }
-                } label: {
-                    Text(L10n.General.Button.done)
-                        .foregroundColor(.black)
-                        .fontWeight(.semibold)
-                }
-                .buttonStyle(.borderedProminent)
-                .accessibilityIdentifier("WorkoutSummary_DoneButton")
-
             }
         }
         .accessibilityIdentifier("WorkoutSummary_ScrollView")
         .task { await viewModel.appear() }
+        .toolbar {
+            // TODO: Replace by proper sheet.
+            ToolbarItem(placement: .cancellationAction) {
+                Button {
+                    Task { await viewModel.dismiss() }
+                } label: {
+                    Image(systemName: "xmark")
+                }
+                .accessibilityIdentifier("WorkoutSummary_DoneButton")
+            }
+        }
     }
 
     // MARK: Private Methods
     @ViewBuilder
     private func title() -> some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 4) {
             Text(viewModel.summaryTitle)
                 .bellFont(.title)
             Text(viewModel.completionPercentageLabel)
-                .foregroundColor(Asset.Colors.totalTime.swiftUIColor)
+                .foregroundStyle(Color(.totalTime))
                 .font(.footnote)
+                .fontWeight(.medium)
         }
+        .scenePadding(.horizontal)
 
         Divider()
+            .padding(.vertical, 8)
     }
 
     @ViewBuilder
     private func totalDuration() -> some View {
-        VStack(alignment: .leading, spacing: -4) {
+        VStack(alignment: .leading) {
             Text(viewModel.totalDurationTitle)
                 .bellFont(.title)
             Text(viewModel.totalDurationLabel)
-                .foregroundColor(Asset.Colors.totalTime.swiftUIColor)
+                .foregroundStyle(Color(.totalTime))
                 .bellFont(.time2)
-
-            Divider()
-                .padding(.top, 4)
         }
+        .scenePadding(.horizontal)
+
+        Divider()
+            .padding(.bottom, 8)
     }
 
     @ViewBuilder
     private func activeEnergy() -> some View {
-        VStack(alignment: .leading, spacing: -3) {
+        VStack(alignment: .leading) {
             Text(viewModel.activeEnergyTitle)
-                .foregroundColor(Color.white)
+                .foregroundStyle(Color.white)
                 .bellFont(.title)
 
             HStack(alignment: .firstTextBaseline) {
                 Text(viewModel.activeEnergyLabel)
-                    .foregroundColor(Asset.Colors.energyBurned.swiftUIColor)
+                    .foregroundStyle(Color(.energyBurned))
                     .bellFont(.metric)
 
                 Text(viewModel.energyUnitLabel)
-                    .foregroundColor(Asset.Colors.energyBurned.swiftUIColor)
+                    .foregroundStyle(Color(.energyBurned))
                     .bellFont(.unit)
             }
-
-            Divider()
-                .padding(.top, 3)
         }
+        .scenePadding(.horizontal)
+
+        Divider()
+            .padding(.bottom, 8)
     }
 
     @ViewBuilder
     private func totalEnergy() -> some View {
-        VStack(alignment: .leading, spacing: -3) {
+        VStack(alignment: .leading) {
             Text(viewModel.totalEnergyTitle)
-                .foregroundColor(Color.white)
+                .foregroundStyle(Color.white)
                 .bellFont(.title)
 
             HStack(alignment: .firstTextBaseline) {
                 Text(viewModel.totalEnergyLabel)
-                    .foregroundColor(Asset.Colors.energyBurned.swiftUIColor)
+                    .foregroundStyle(Color(.energyBurned))
                     .bellFont(.metric)
 
                 Text(viewModel.energyUnitLabel)
-                    .foregroundColor(Asset.Colors.energyBurned.swiftUIColor)
+                    .foregroundStyle(Color(.energyBurned))
                     .bellFont(.unit)
             }
-
-            Divider()
-                .padding(.top, 3)
         }
+        .scenePadding(.horizontal)
+
+        Divider()
+            .padding(.bottom, 8)
     }
 
     @ViewBuilder
     private func heartRate() -> some View {
-        VStack(alignment: .leading, spacing: -3) {
+        VStack(alignment: .leading) {
             Text(viewModel.heartRateTitle)
-                .foregroundColor(Color.white)
+                .foregroundStyle(Color.white)
                 .bellFont(.title)
 
             HStack(alignment: .firstTextBaseline) {
                 Text(viewModel.averageHeartRateLabel)
-                    .foregroundColor(Asset.Colors.heartRate.swiftUIColor)
+                    .foregroundStyle(Color(.heartRate))
                     .bellFont(.metric)
 
                 Text(viewModel.heartRateUnitLabel)
-                    .foregroundColor(Asset.Colors.heartRate.swiftUIColor)
+                    .foregroundStyle(Color(.heartRate))
                     .bellFont(.unit)
             }
 
             VStack(alignment: .leading) {
                 Text(viewModel.heartRateRangeTitle)
-                    .foregroundColor(Color.white.opacity(0.6))
+                    .foregroundStyle(Color.white.opacity(0.6))
                     .bellFont(.title)
 
                 Text(viewModel.heartRateRangeLabel)
-                    .foregroundColor(Asset.Colors.heartRate.swiftUIColor)
+                    .foregroundStyle(Color(.heartRate))
                     .bellFont(.title)
-
-                Divider()
             }
         }
+        .scenePadding(.horizontal)
+
+        Divider()
+            .padding(.bottom, 8)
     }
 
     @ViewBuilder
     private func dateTime() -> some View {
         VStack(alignment: .leading) {
             Text(viewModel.dateTitle)
-                .foregroundColor(Color.white)
+                .foregroundStyle(Color.white)
                 .bellFont(.title)
 
             Text(viewModel.timeRangeLabel)
-                .foregroundColor(Color.white.opacity(0.6))
+                .foregroundStyle(Color.white.opacity(0.6))
                 .bellFont(.title)
         }
+        .scenePadding(.horizontal)
     }
 }
 

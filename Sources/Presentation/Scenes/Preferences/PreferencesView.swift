@@ -39,7 +39,7 @@ struct PreferencesView: View {
             NavigationLink {
                 HapticSoundPreferenceView()
             } label: {
-                Text(viewModel.title(forRow: .soundAndHaptics))
+                Text(viewModel.listTitle(forRow: .soundAndHaptics))
             }
             .accessibilityIdentifier("Preferences_HapticSoundRow")
 
@@ -47,7 +47,8 @@ struct PreferencesView: View {
                 selectedValue: $viewModel.heartRate,
                 range: viewModel.range(forRow: .maximumHeartRate),
                 unit: viewModel.caption(forRow: .maximumHeartRate),
-                label: viewModel.title(forRow: .maximumHeartRate)
+                label: viewModel.listTitle(forRow: .maximumHeartRate),
+                shortLabel: viewModel.title(forRow: .maximumHeartRate)
             )
             .accessibilityIdentifier("Preferences_HeartRateRow")
         }
@@ -60,7 +61,8 @@ struct PreferencesView: View {
                 selectedValue: $viewModel.roundCount,
                 range: viewModel.range(forRow: .roundCount),
                 unit: viewModel.caption(forRow: .roundCount),
-                label: viewModel.title(forRow: .roundCount)
+                label: viewModel.listTitle(forRow: .roundCount),
+                shortLabel: viewModel.title(forRow: .roundCount)
             )
             .accessibilityIdentifier("Preferences_RoundCountRow")
 
@@ -70,7 +72,7 @@ struct PreferencesView: View {
                 range: viewModel.range(forRow: .roundDuration),
                 minuteStep: viewModel.step(forRowSegment: .roundMinutes),
                 secondStep: viewModel.step(forRowSegment: .roundSeconds),
-                label: viewModel.title(forRow: .roundDuration),
+                label: viewModel.listTitle(forRow: .roundDuration),
                 hint: viewModel.footnote(forRow: .roundDuration)
             )
             .accessibilityIdentifier("Preferences_RoundDurationRow")
@@ -81,7 +83,7 @@ struct PreferencesView: View {
                 range: viewModel.range(forRow: .breakDuration),
                 minuteStep: viewModel.step(forRowSegment: .breakMinutes),
                 secondStep: viewModel.step(forRowSegment: .breakSeconds),
-                label: viewModel.title(forRow: .breakDuration),
+                label: viewModel.listTitle(forRow: .breakDuration),
                 hint: viewModel.footnote(forRow: .breakDuration)
             )
             .accessibilityIdentifier("Preferences_BreakDurationRow")
@@ -92,7 +94,7 @@ struct PreferencesView: View {
                 range: viewModel.range(forRow: .lastStretchDuration),
                 minuteStep: viewModel.step(forRowSegment: .lastStretchMinutes),
                 secondStep: viewModel.step(forRowSegment: .lastStretchSeconds),
-                label: viewModel.title(forRow: .lastStretchDuration),
+                label: viewModel.listTitle(forRow: .lastStretchDuration),
                 hint: viewModel.footnote(forRow: .lastStretchDuration)
             )
             .accessibilityIdentifier("Preferences_FinaleStageDurationRow")
@@ -109,7 +111,7 @@ struct PreferencesView: View {
             NavigationLink {
                 AcknowledgmentView()
             } label: {
-                Text(viewModel.title(forRow: .acknowledgement))
+                Text(viewModel.listTitle(forRow: .acknowledgement))
             }
             .accessibilityIdentifier("Preferences_AcknowledgementRow")
         } footer: {

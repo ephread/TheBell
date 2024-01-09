@@ -53,7 +53,7 @@ struct AcknowledgmentView: View {
         }
         .accessibilityIdentifier("Preferences_FinaleStageDuration_ScrollView")
         .navigationTitle(L10n.Preference.acknowledgement)
-        .foregroundColor(Color.white.opacity(0.6))
+        .foregroundStyle(Color.white.opacity(0.6))
     }
 }
 

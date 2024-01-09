@@ -41,8 +41,11 @@ protocol PreferencesViewModeling: ObservableObject,
     /// Provides the title for the given preference section.
     func title(forSection section: PreferenceSection) -> String
 
+    /// Provides the picker's list title (row title) for the given preference row.
+    func listTitle(forRow row: PreferenceRow) -> String
+
     /// Provides the picker's title for the given preference row.
-    func title(forRow row: PreferenceRow) -> String
+    func title(forRow row: PreferenceRow) -> String?
 
     /// Provides the picker's caption for the given preference row.
     func caption(forRow row: PreferenceRow) -> String
@@ -160,15 +163,25 @@ class PreferencesViewModel: PreferencesViewModeling {
         }
     }
 
-    func title(forRow row: PreferenceRow) -> String {
-        switch row {
-        case .soundAndHaptics: return L10n.Preference.soundAndHaptics
-        case .maximumHeartRate: return L10n.Preference.maximumHeartRate
-        case .roundCount: return L10n.Preference.roundCount
-        case .roundDuration: return L10n.Preference.roundDuration
-        case .breakDuration: return L10n.Preference.breakDuration
-        case .lastStretchDuration: return L10n.Preference.lastStretchDuration
-        case .acknowledgement: return L10n.Preference.acknowledgement
+    func listTitle(forRow row: PreferenceRow) -> String {
+        return switch row {
+        case .soundAndHaptics: L10n.Preference.soundAndHaptics
+        case .maximumHeartRate: L10n.Preference.maximumHeartRate
+        case .roundCount: L10n.Preference.roundCount
+        case .roundDuration: L10n.Preference.roundDuration
+        case .breakDuration: L10n.Preference.breakDuration
+        case .lastStretchDuration: L10n.Preference.lastStretchDuration
+        case .acknowledgement: L10n.Preference.acknowledgement
+        }
+    }
+
+    func title(forRow row: PreferenceRow) -> String? {
+        return switch row {
+        case .maximumHeartRate: L10n.Preference.MaximumHeartRate.short
+        case .roundCount: L10n.Preference.RoundCount.short
+        case .roundDuration: L10n.Preference.RoundDuration.short
+        case .lastStretchDuration: L10n.Preference.LastStretchDuration.short
+        default: nil
         }
     }
 

@@ -33,9 +33,9 @@ struct WorkoutControlView: View {
                         Image(systemName: "xmark")
                             .fontWeight(.semibold)
                             .font(.title2)
-                            .foregroundColor(Asset.Colors.end.swiftUIColor)
+                            .foregroundStyle(Color(.end))
                     }
-                    .buttonStyle(.workoutControl(color: Asset.Colors.endBackground.swiftUIColor))
+                    .buttonStyle(.workoutControl(color: Color(.endBackground)))
                     .accessibilityIdentifier("WorkoutControl_EndButton")
 
                     Text(L10n.General.Button.end)
@@ -49,9 +49,9 @@ struct WorkoutControlView: View {
                         Image(systemName: viewModel.isWorkoutPaused ? "arrow.clockwise" : "pause")
                             .fontWeight(.semibold)
                             .font(.title2)
-                            .foregroundColor(Asset.Colors.pause.swiftUIColor)
+                            .foregroundStyle(Color(.pause))
                     }
-                    .buttonStyle(.workoutControl(color: Asset.Colors.pauseBackground.swiftUIColor))
+                    .buttonStyle(.workoutControl(color: Color(.pauseBackground)))
                     .accessibilityIdentifier("WorkoutControl_PauseResumeButton")
 
                     Text(

@@ -124,9 +124,13 @@
 "preference.acknowledgement" = "Acknowledgement";
 "preference.soundAndHaptics" = "Sounds & Haptics";
 "preference.maximumHeartRate" = "Maximum Heart Rate";
+"preference.maximumHeartRate.short" = "Max Heart Rate";
 "preference.roundCount" = "Number of Rounds";
+"preference.roundCount.short" = "Rounds";
 "preference.roundDuration" = "Round Duration";
+"preference.roundDuration.short" = "Duration";
 "preference.lastStretchDuration" = "End notification";
+"preference.lastStretchDuration.short" = "Notification";
 "preference.breakDuration" = "Break Duration";
 
 "preference.value.maximumHeartRate" = "%d BPM";

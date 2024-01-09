@@ -67,7 +67,7 @@ struct WorkoutView: View {
             Image(systemName: "exclamationmark.octagon")
                 .fontDesign(.rounded)
                 .font(.largeTitle)
-                .foregroundColor(.red)
+                .foregroundStyle(.red)
         }
     }
 }

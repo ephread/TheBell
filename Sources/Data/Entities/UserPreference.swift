@@ -43,7 +43,7 @@ struct UserPreference: Sendable,
     ///
     /// This is a unique object. The UserPreferences table contains only one row
     /// that can be updated by the user.
-    static var `default`: UserPreference {
+    static var `default`: Self {
         return Self(
             isAudioFeedbackEnabled: true,
             isHapticFeedbackEnabled: false,

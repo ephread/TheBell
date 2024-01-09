@@ -6,11 +6,11 @@
 import SwiftUI
 
 struct IntegerPickerView: View {
-
     @Binding var selectedValue: Int
     let range: ClosedRange<Int>
     let unit: String?
     let label: String
+    let shortLabel: String?
 
     private var detailLabel: String {
         if let unit = unit {
@@ -43,7 +43,7 @@ struct IntegerPickerView: View {
 
                 Spacer()
             }
-            .navigationTitle(label)
+            .navigationTitle(shortLabel ?? label)
             .navigationBarTitleDisplayMode(.inline)
         } label: {
             VStack(alignment: .leading) {
@@ -51,7 +51,7 @@ struct IntegerPickerView: View {
                 Text(detailLabel)
                     .accessibilityIdentifier("Preferences_IntegerPicker_DetailLabel")
                     .font(.caption2)
-                    .foregroundColor(Color.secondary)
+                    .foregroundStyle(Color.secondary)
             }
         }
     }
@@ -68,7 +68,8 @@ struct IntegerPickerPreview: View {
                     selectedValue: $selectedValue,
                     range: range,
                     unit: "BPM",
-                    label: "Maximum Heart Rate"
+                    label: "Maximum Heart Rate",
+                    shortLabel: "Max Heart Rate"
                 )
             }
             .navigationTitle("Preferences")

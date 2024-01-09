@@ -18,7 +18,6 @@ disabled_rules:
   - blanket_disable_command
 
 opt_in_rules:
-  - anyobject_protocol
   - anonymous_argument_in_multiline_closure
   - closure_body_length
   - closure_end_indentation

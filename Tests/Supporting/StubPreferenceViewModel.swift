@@ -41,7 +41,11 @@ final class StubPreferenceViewModel: PreferencesViewModeling {
         return ""
     }
 
-    func title(forRow row: The_Bell.PreferenceRow) -> String {
+    func listTitle(forRow row: The_Bell.PreferenceRow) -> String {
+        return ""
+    }
+
+    func title(forRow row: The_Bell.PreferenceRow) -> String? {
         return ""
     }
 

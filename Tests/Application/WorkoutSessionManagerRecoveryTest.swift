@@ -49,6 +49,7 @@ final class WorkoutSessionManagerRecoveryTest: XCTestCase {
         cancellables = []
 
         Defaults.removeAll()
+        Defaults[.hasSeenWelcomeMessage] = true
     }
 
     // Session Recovery (Integration Tests)

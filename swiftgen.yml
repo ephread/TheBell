@@ -11,11 +11,3 @@ strings:
     outputs:
         templateName: structured-swift5
         output: Strings+Generated.swift
-
-xcassets:
-    inputs:
-        - Sources/Supporting Files/Assets/Images.xcassets
-        - Sources/Supporting Files/Assets/Colors.xcassets
-    outputs:
-        templateName: swift5
-        output: Assets+Generated.swift
