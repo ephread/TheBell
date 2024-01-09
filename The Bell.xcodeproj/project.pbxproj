@@ -78,6 +78,7 @@
 		B6AF7F842853E51000FE0075 /* ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = B6FF38312843FF370040C8ED /* ding.wav */; };
 		B6AF7F862853E9C700FE0075 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AF7F852853E9C700FE0075 /* WelcomeViewModel.swift */; };
 		B6B60EB62A00829200B24977 /* WorkoutSessionManagerRecoveryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B60EB52A00829100B24977 /* WorkoutSessionManagerRecoveryTest.swift */; };
+		B6BF62B92B4CCF49001DF41C /* XCUIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BF62B82B4CCF49001DF41C /* XCUIApplication+Extensions.swift */; };
 		B6BF86F629F725C400E66B8E /* WorkoutSummaryViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BF86F529F7256F00E66B8E /* WorkoutSummaryViewModelTest.swift */; };
 		B6BF86FA29F72A5300E66B8E /* WorkoutControlViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BF86F929F72A0F00E66B8E /* WorkoutControlViewModelTest.swift */; };
 		B6CBA1D929D7809F00AF55D0 /* WorkoutCountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CBA1D829D7809F00AF55D0 /* WorkoutCountdownView.swift */; };
@@ -234,6 +235,7 @@
 		B6BF62B22B4CB3DF001DF41C /* LICENSE.CC-BY-NC-ND */ = {isa = PBXFileReference; lastKnownFileType = text; path = "LICENSE.CC-BY-NC-ND"; sourceTree = "<group>"; };
 		B6BF62B32B4CB3DF001DF41C /* LICENSE.CC0 */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.CC0; sourceTree = "<group>"; };
 		B6BF62B42B4CB3DF001DF41C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B6BF62B82B4CCF49001DF41C /* XCUIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		B6BF86F529F7256F00E66B8E /* WorkoutSummaryViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSummaryViewModelTest.swift; sourceTree = "<group>"; };
 		B6BF86F929F72A0F00E66B8E /* WorkoutControlViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutControlViewModelTest.swift; sourceTree = "<group>"; };
 		B6CBA1D829D7809F00AF55D0 /* WorkoutCountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCountdownView.swift; sourceTree = "<group>"; };
@@ -793,6 +795,7 @@
 		B6DEC94A29F9D1B2006D4A0B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B6BF62B82B4CCF49001DF41C /* XCUIApplication+Extensions.swift */,
 				B6DEC94B29F9D1C2006D4A0B /* XCUIElement+Extensions.swift */,
 			);
 			path = Extensions;
@@ -1402,6 +1405,7 @@
 				B6DEC94929F9D189006D4A0B /* WorkoutUITests.swift in Sources */,
 				B6FF38112843FA900040C8ED /* PreferencesUITests.swift in Sources */,
 				B6DEC95029F9D829006D4A0B /* WelcomeUITests.swift in Sources */,
+				B6BF62B92B4CCF49001DF41C /* XCUIApplication+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1594,7 +1598,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -1631,7 +1635,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};

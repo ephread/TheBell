@@ -167,8 +167,9 @@ class PreferencesUITests: XCTestCase {
     }
 
     private func launch() -> XCUIApplication {
-        // UI tests must launch the application that they test.
         let app = XCUIApplication()
+
+        app.uninstall()
         app.launchArguments = ["--fake-healthkit", "--no-welcome", "--reset-database"]
         app.launch()
 

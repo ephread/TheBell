@@ -34,8 +34,8 @@ Throughout the process, I reworked approximately 70% of the app's codebase. Look
 
 ### Requirements
 
-- Xcode 14.3+
-- watchOS 9.4+
+- Xcode 15+
+- watchOS 10+
 
 ### Installation
 

@@ -41,8 +41,11 @@ class WorkoutUITests: XCTestCase {
 
         app.scrollViews["WorkoutSummary_ScrollView"].swipeUp()
         let doneButton = app.buttons["WorkoutSummary_DoneButton"]
-        if doneButton.waitForExistence(timeout: 2) {
-            doneButton.tap()
+
+        // Using 'firstMatch' because SwiftUI attaches the identifier to
+        // multiple buttons down the hierarchy.
+        if doneButton.firstMatch.waitForExistence(timeout: 2) {
+            doneButton.firstMatch.tap()
         }
 
         XCTAssertTrue(mainList.exists)
@@ -51,6 +54,8 @@ class WorkoutUITests: XCTestCase {
     // MARK: Private Helpers
     private func launch() -> XCUIApplication {
         let app = XCUIApplication()
+
+        app.uninstall()
         app.launchArguments = ["--fake-healthkit", "--no-welcome", "--reset-database"]
         app.launch()
 

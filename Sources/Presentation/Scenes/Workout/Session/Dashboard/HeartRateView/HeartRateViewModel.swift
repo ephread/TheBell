@@ -3,7 +3,7 @@
 // Licensed under the terms of the Apache License 2.0
 //
 
-import Foundation
+import SwiftUI
 
 @MainActor
 /// Manages the image sequence displayed by ``HeartRateView``.

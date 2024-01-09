@@ -26,8 +26,9 @@ class WelcomeUITests: XCTestCase {
 
     // MARK: Private Helpers
     private func launch() -> XCUIApplication {
-        // UI tests must launch the application that they test.
         let app = XCUIApplication()
+
+        app.uninstall()
         app.launchArguments = ["--fake-healthkit", "--reset-database"]
         app.launch()
 
